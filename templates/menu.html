@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Menu - Delicious Restaurant{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Our Menu</h1>
+        <p>Discover our delicious selection of dishes</p>
+    </div>
+</section>
+
+<!-- Menu Section -->
+<section class="menu-section">
+    <div class="container">
+        <!-- Category Filter -->
+        <div class="menu-filter">
+            <button class="filter-btn active" data-category="all">All</button>
+            <button class="filter-btn" data-category="appetizers">Appetizers</button>
+            <button class="filter-btn" data-category="main-course">Main Course</button>
+            <button class="filter-btn" data-category="desserts">Desserts</button>
+            <button class="filter-btn" data-category="beverages">Beverages</button>
+        </div>
+
+        <!-- Menu Items Grid -->
+        <div class="menu-grid" id="menu-grid">
+            <!-- Menu items will be loaded dynamically -->
+            <div class="loading">Loading menu...</div>
+        </div>
+    </div>
+</section>
+
+<!-- Order Section -->
+<section class="order-section">
+    <div class="container">
+        <h2>Order Now</h2>
+        <div id="cart-items"></div>
+        <div id="cart-total" class="cart-total"></div>
+        <button id="checkout-btn" class="btn btn-primary" style="display: none;">Proceed to Checkout</button>
+    </div>
+</section>
+
+<!-- Checkout Modal -->
+<div id="checkout-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Checkout</h2>
+        <form id="checkout-form">
+            <div class="form-group">
+                <label for="customer-name">Name *</label>
+                <input type="text" id="customer-name" name="customer_name" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-email">Email *</label>
+                <input type="email" id="customer-email" name="customer_email" required>
+            </div>
+            <div class="form-group">
+                <label for="customer-phone">Phone *</label>
+                <input type="tel" id="customer-phone" name="customer_phone" required>
+            </div>
+            <div class="form-group">
+                <label for="delivery-address">Delivery Address *</label>
+                <textarea id="delivery-address" name="delivery_address" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <h3>Order Summary</h3>
+                <div id="order-summary"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+{% endblock %}
