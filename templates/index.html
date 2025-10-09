@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Delicious Restaurant - Home{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Delicious Restaurant</h1>
+        <p>Experience the finest dining with our exquisite menu</p>
+        <div class="hero-buttons">
+            <a href="/menu" class="btn btn-primary">View Menu</a>
+            <a href="/reservations" class="btn btn-secondary">Make Reservation</a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <h2>Why Choose Us</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🍽️</div>
+                <h3>Quality Food</h3>
+                <p>Fresh ingredients prepared by expert chefs</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Service</h3>
+                <p>Quick and efficient service without compromising quality</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Great Prices</h3>
+                <p>Affordable prices for exceptional dining experience</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3>Ambiance</h3>
+                <p>Comfortable and elegant dining atmosphere</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Dishes Section -->
+<section class="popular-dishes">
+    <div class="container">
+        <h2>Popular Dishes</h2>
+        <div class="dishes-grid" id="popular-dishes">
+            <!-- Dishes will be loaded dynamically -->
+        </div>
+        <div class="text-center">
+            <a href="/menu" class="btn btn-primary">View Full Menu</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials">
+    <div class="container">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p>"Amazing food and excellent service! The best restaurant in town."</p>
+                <h4>- John Doe</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"Love the ambiance and the menu variety. Highly recommended!"</p>
+                <h4>- Jane Smith</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"Every dish is a masterpiece. Can't wait to come back!"</p>
+                <h4>- Mike Johnson</h4>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

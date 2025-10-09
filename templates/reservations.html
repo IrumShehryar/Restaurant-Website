@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Reservations - Delicious Restaurant{% endblock %}
+
+{% block content %}
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Make a Reservation</h1>
+        <p>Book your table in advance</p>
+    </div>
+</section>
+
+<!-- Reservation Form Section -->
+<section class="reservation-section">
+    <div class="container">
+        <div class="reservation-content">
+            <div class="reservation-info">
+                <h2>Reserve Your Table</h2>
+                <p>We recommend booking in advance to ensure availability. Our team will confirm your reservation shortly.</p>
+                <div class="info-card">
+                    <h3>📞 Call Us</h3>
+                    <p>(555) 123-4567</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Opening Hours</h3>
+                    <p>Monday - Friday: 11am - 10pm</p>
+                    <p>Saturday - Sunday: 10am - 11pm</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 Location</h3>
+                    <p>123 Food Street</p>
+                </div>
+            </div>
+
+            <div class="reservation-form-container">
+                <form id="reservation-form" class="reservation-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Date *</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time">Time *</label>
+                            <input type="time" id="time" name="time" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Number of Guests *</label>
+                        <select id="guests" name="guests" required>
+                            <option value="">Select number of guests</option>
+                            <option value="1">1 Guest</option>
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="7">7 Guests</option>
+                            <option value="8">8+ Guests</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Special Requests</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Any special requests or dietary requirements?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Reservation</button>
+                </form>
+
+                <div id="reservation-message" class="message" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/reservations.js') }}"></script>
+{% endblock %}
