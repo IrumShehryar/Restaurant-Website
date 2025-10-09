@@ -96,12 +96,17 @@ Resaurant-Website/
      export MONGO_URI="your_mongodb_connection_string"
      ```
 
-6. **Run the application**
+6. **Initialize the database with sample data (optional)**
+   ```bash
+   python init_db.py
+   ```
+
+7. **Run the application**
    ```bash
    python app.py
    ```
 
-7. **Access the website**
+8. **Access the website**
    - Open your browser and go to: `http://localhost:5000`
 
 ## API Endpoints
@@ -122,6 +127,19 @@ Resaurant-Website/
 - `POST /api/contact` - Submit a contact form
 
 ## Usage
+
+### Initializing the Database
+
+The `init_db.py` script helps you populate the database with sample menu items:
+
+```bash
+python init_db.py
+```
+
+This script will:
+- Clear existing data from all collections
+- Insert 16 sample menu items across different categories
+- Verify the MongoDB connection
 
 ### Adding Menu Items
 
