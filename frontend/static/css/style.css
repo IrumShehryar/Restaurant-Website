@@ -1,0 +1,14 @@
+body {
+     font-family: system-ui, sans-serif; margin: 24px; 
+     background-color: #0c0c0c;
+}
+.logo{
+     height : 10rem;
+     width: auto;
+}
+h1{
+     color: #fc4908;
+}
+h2{
+     color: hsl(0, 98%, 51%)
+}
