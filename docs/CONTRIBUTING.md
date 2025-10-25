@@ -21,7 +21,7 @@ Windows (PowerShell / CMD):
 python -m venv .venv
 .\.venv\Scripts\activate
 
-####for (macOS / Linux:)
+macOS / Linux:
 
 python3 -m venv .venv
 source .venv/bin/activate
