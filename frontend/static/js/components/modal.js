@@ -1,0 +1,97 @@
+/**
+ * Minimal modal UI factory.
+ *
+ * This lightweight component creates a modal root in the document when
+ * first used and exposes a small API:
+ *
+ *   const modal = createModal()
+ *   modal.setContent('<p>hi</p>')
+ *   modal.open()
+ *
+ * Methods:
+ * - open(): show the modal
+ * - close(): hide the modal and call onClose if set
+ * - setContent(htmlOrNode): set inner content (string or Node)
+ * - setOnClose(cb): register a callback fired when the modal closes
+ *
+ * Accessibility & behavior:
+ * - Escape key closes the modal
+ * - Clicking the backdrop (outside the box) closes the modal
+ * - If the content includes an element with id="modal-close", it will be
+ *   wired to call close() automatically.
+ */
+export function createModal() {
+	let root = null
+	let onClose = null
+
+	function ensure() {
+		if (root) return root
+		root = document.createElement('div')
+		root.id = 'modal-root'
+		// very small inline styles so it's visible; replace with CSS later
+		root.style.position = 'fixed'
+		root.style.left = '0'
+		root.style.top = '0'
+		root.style.width = '100%'
+		root.style.height = '100%'
+		root.style.display = 'none'
+		root.style.zIndex = '9999'
+
+		root.innerHTML = `
+			<div id="modal-box" style="margin:4% auto;max-width:900px;background:#fff;padding:12px;">
+				<div id="modal-content"></div>
+			</div>
+		`
+
+		// backdrop click closes
+		root.addEventListener('click', (ev) => {
+			if (ev.target === root) close()
+		})
+
+		// ESC closes
+		const escHandler = (ev) => { if (ev.key === 'Escape') close() }
+		document.addEventListener('keydown', escHandler)
+		root._escHandler = escHandler
+
+		document.body.appendChild(root)
+		return root
+	}
+
+	/**
+	 * Replace the modal content. Accepts HTML string or DOM Node.
+	 * When a node with id="modal-close" is present, it will be wired to
+	 * close the modal for convenience.
+	 *
+	 * @param {string|Node} htmlOrNode
+	 */
+	function setContent(htmlOrNode) {
+		const r = ensure()
+		const content = r.querySelector('#modal-content')
+		content.innerHTML = ''
+		if (typeof htmlOrNode === 'string') content.innerHTML = htmlOrNode
+		else if (htmlOrNode instanceof Node) content.appendChild(htmlOrNode)
+
+		// wire internal close button if renderer provides one with id="modal-close"
+		const closeBtn = content.querySelector('#modal-close')
+		if (closeBtn) closeBtn.addEventListener('click', () => close())
+	}
+
+	/** Show the modal. */
+	function open() {
+		const r = ensure()
+		r.style.display = 'block'
+	}
+
+	/** Hide the modal and call the optional onClose callback. */
+	function close() {
+		if (!root) return
+		root.style.display = 'none'
+		if (typeof onClose === 'function') onClose()
+	}
+
+	/** Set an optional callback fired when the modal closes. */
+	function setOnClose(cb) { onClose = cb }
+
+	return { open, close, setContent, setOnClose }
+}
+

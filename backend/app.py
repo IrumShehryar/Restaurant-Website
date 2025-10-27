@@ -1,42 +1,87 @@
 import os
-from flask import Flask,jsonify ,url_for,render_template
+"""Flask application entrypoint for the Restaurant Website project.
+
+This module creates the Flask application, registers API blueprints and
+serves the frontend templates and static assets located in the `frontend`
+folder. The app is intentionally simple: the single-page menu front-end is
+served from `menu.html` and uses the JSON endpoints under
+`/api/v1/menu` to load data via XHR/Fetch.
+
+Run options are read from environment variables when starting locally.
+
+Key routes:
+- GET /            -> serves index.html
+- GET /menu        -> serves menu.html (single page app)
+- GET /menu/<id>   -> serves menu.html (friendly deep-link for an item)
+
+Notes:
+- The API endpoints are provided by the `menu_bp` blueprint
+  (see backend/api/v1/menu/*).
+"""
+
+from flask import Flask, render_template
 from werkzeug.middleware.proxy_fix import ProxyFix
 from dotenv import load_dotenv
 from api.v1.menu.menu_routes import menu_bp
 
 load_dotenv()
-app = Flask (
+
+app = Flask(
     __name__,
-    template_folder= "../frontend/templates",
-    static_folder= "../frontend/static",
-    static_url_path= "/static", 
+    template_folder="../frontend/templates",
+    static_folder="../frontend/static",
+    static_url_path="/static",
 )
 
+# If the app is running behind a proxy (nginx, etc) ProxyFix preserves
+# original client scheme and path prefix. Adjust values when deploying.
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_prefix=1)
 
-#register the blueprints
+# Register REST API blueprint for menu endpoints
 app.register_blueprint(menu_bp)
 
-@app.get ("/") 
 
+@app.get("/")
 def home():
+    """Render the root page (`index.html`).
+
+    The page is a minimal entrypoint used for the static frontend.
+    """
     return render_template("index.html")
-    
+
+
 @app.get("/menu")
 def menu():
+    """Render the SPA that lists the menu items.
+
+    The front-end JavaScript will call the JSON API to populate content.
+    """
     return render_template("menu.html")
 
 
 @app.get("/menu/<int:item_id>")
 def menu_item(item_id):
-    """Render the menu page for a specific item id.
+    """Render the menu SPA for a deep link to a specific item.
 
-    This provides a friendly URL like /menu/1 that returns the same
-    `menu.html` page. The frontend script can inspect the path and
-    fetch `/api/v1/menu/<id>` to load the item details.
+    This endpoint intentionally returns the same `menu.html` file so the
+    frontend can detect the path and open the item detail modal for
+    `item_id` by calling `/api/v1/menu/<item_id>`.
+
+    Args:
+        item_id (int): menu item id parsed from the URL.
+
+    Returns:
+        A rendered HTML page (menu.html) — the frontend handles fetching
+        of the item details as JSON.
     """
     return render_template("menu.html")
 
 
 if __name__ == "__main__":
-     app.run(host="127.0.0.1", port=os.getenv("PORT"), debug=os.getenv("FLASK_DEBUG"), use_reloader=os.getenv("FLASK_RELOADER"))
+    # When run directly, read run settings from environment variables.
+    app.run(
+        host="127.0.0.1",
+        port=os.getenv("PORT"),
+        debug=os.getenv("FLASK_DEBUG"),
+        use_reloader=os.getenv("FLASK_RELOADER"),
+    )
