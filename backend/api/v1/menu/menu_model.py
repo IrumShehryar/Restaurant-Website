@@ -188,9 +188,9 @@ def list_all_menu_items():
     return menu_items
 
 
-def get_menu_item(item_id):
+def get_menu_by_id(item_id):
     """Return single menu item by id or None."""
     for item in menu_items:
-        if str(item["id"]) == str(item_id):
+        if item["id"] == (item_id):
             return item
-    #return None
+    return None
