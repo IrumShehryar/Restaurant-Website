@@ -1,9 +1,7 @@
 body {
-    background-color: #000;
-    color: #fff;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+     font-family: system-ui, sans-serif; margin: 24px; 
+     background-color: #f7f5f5;
+     color: #739138;
 }
 
 .site-header {
@@ -78,4 +76,39 @@ h2 {
 
 .menu-item button:hover {
     background-color: #ff6347;
+}
+h2{
+     color: hsl(0, 98%, 51%)
+}
+
+/* Minimal modal styles (unstyled functionality was added in JS) */
+#modal-root{
+     position: fixed;
+     inset: 0; /* top:0; right:0; bottom:0; left:0 */
+     display: flex;
+     align-items: flex-start;
+     justify-content: center;
+     padding: 4vh 1rem;
+     background: rgba(0,0,0,0.35);
+}
+#modal-box{
+     background: #fff;
+     border-radius: 6px;
+     max-width: 900px;
+     width: 100%;
+     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+     overflow: auto;
+}
+#modal-content{
+     padding: 18px;
+}
+#modal-content img{max-width:100%;height:auto;display:block;margin:8px 0}
+#modal-content #modal-close{
+     display:inline-block;margin-top:12px;padding:6px 10px;border:none;background:#ddd;border-radius:4px;cursor:pointer
+}
+
+/* small responsive tweaks */
+@media (min-width: 768px){
+     #modal-root{align-items:center}
+     #modal-box{max-width:720px}
 }
