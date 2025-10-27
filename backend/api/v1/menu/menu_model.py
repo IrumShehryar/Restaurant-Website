@@ -1,6 +1,14 @@
-# backend/api/v1/menu/menu_model.py
+"""Mock menu model for the API.
 
-# backend/api/v1/menu/menu_model.py
+This module provides in-memory mock data for development and two
+small helper functions used by the controllers:
+
+- list_all_menu_items() -> list[dict]
+- get_menu_by_id(item_id: int) -> dict|None
+
+The dataset is intentionally small and self-contained so the project can
+run without a database during development and testing.
+"""
 
 # Mock data (16 items) for Revontulet Flamehouse
 menu_items = [
@@ -184,12 +192,35 @@ menu_items = [
 
 
 def list_all_menu_items():
-    """Return all menu items (mock)."""
+    """Return a list of all menu items.
+
+    Returns:
+        list[dict]: A list of menu item dictionaries. Each item contains
+        keys such as ``id``, ``name``, ``description``, ``price``,
+        ``category``, ``image``, ``dietary``, ``allergens``, and
+        ``available_days``.
+
+    Example:
+        >>> items = list_all_menu_items()
+        >>> isinstance(items, list)
+        True
+    """
     return menu_items
 
 
 def get_menu_by_id(item_id):
-    """Return single menu item by id or None."""
+    """Return a single menu item matching ``item_id``.
+
+    Args:
+        item_id (int): The id of the requested menu item.
+
+    Returns:
+        dict | None: The menu item dictionary if found, otherwise ``None``.
+
+    Note:
+        The function performs a linear search over the in-memory list, which
+        is fine for the small mock dataset used in development.
+    """
     for item in menu_items:
         if item["id"] == (item_id):
             return item

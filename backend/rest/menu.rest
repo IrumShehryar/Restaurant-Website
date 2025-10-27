@@ -9,4 +9,4 @@ GET http://127.0.0.1:5000/api/v1/menu/5
 ### Get single menu item non-existent
 GET http://127.0.0.1:5000/api/v1/menu/0
 ### Get single menu item malformed input
-GET http://127.0.0.1:5000/api/v1/menu/-(
+GET http://127.0.0.1:5000/api/v1/menu/-

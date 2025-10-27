@@ -1,7 +1,17 @@
 /**
- * Build and return a single "menu card" element for a given item.
- * The card shows the item's name, category, price, and action buttons.
- * It also emits a custom "show-detail" event when the Details button is clicked.
+ * Menu card component
+ *
+ * Creates a DOM element representing a menu item. The card is intentionally
+ * small — it holds the visible data and manages only the local UI (button
+ * wiring). It emits a CustomEvent named "show-detail" when the Details
+ * button is clicked so the page controller can respond.
+ *
+ * @param {Object} item - Menu item object from the API.
+ * @param {number} item.id
+ * @param {string} item.name
+ * @param {string} item.category
+ * @param {number} item.price
+ * @returns {HTMLElement} A DOM node representing the card.
  */
 export function createMenuCard(item) {
   // Create the root container for the card: <div class="menu-card">

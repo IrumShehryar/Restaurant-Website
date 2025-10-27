@@ -1,10 +1,30 @@
 import { apiUrl } from "../utils/config.js";
 import fetchData from "../utils/fetchData.js";
 
-export function getAllMenu(){
-    return fetchData(apiUrl("menu"))
+/**
+ * Service: menuService
+ *
+ * Thin network layer that exposes functions for the menu API. Returning
+ * raw JSON payloads keeps this layer simple and lets callers determine
+ * how to render or transform the data.
+ */
+
+/**
+ * Fetch all menu items from the backend API.
+ *
+ * @returns {Promise<Array<Object>>} Promise that resolves to an array of menu item objects.
+ */
+export function getAllMenu() {
+    return fetchData(apiUrl("menu"));
 }
 
-export function getMenuById(id){
-    return fetchData(apiUrl(`menu/${id}`))
-};
+
+/**
+ * Fetch a single menu item by id.
+ *
+ * @param {number|string} id - Item id to fetch. The service passes it to the API as-is.
+ * @returns {Promise<Object>} Promise that resolves to the item object.
+ */
+export function getMenuById(id) {
+    return fetchData(apiUrl(`menu/${id}`));
+}
