@@ -27,5 +27,16 @@ def menu():
     return render_template("menu.html")
 
 
+@app.get("/menu/<int:item_id>")
+def menu_item(item_id):
+    """Render the menu page for a specific item id.
+
+    This provides a friendly URL like /menu/1 that returns the same
+    `menu.html` page. The frontend script can inspect the path and
+    fetch `/api/v1/menu/<id>` to load the item details.
+    """
+    return render_template("menu.html")
+
+
 if __name__ == "__main__":
      app.run(host="127.0.0.1", port=os.getenv("PORT"), debug=os.getenv("FLASK_DEBUG"), use_reloader=os.getenv("FLASK_RELOADER"))
