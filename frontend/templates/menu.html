@@ -19,12 +19,9 @@
         </header>
         <main>
             <h2>Menu</h2>
-            <button id="btnLoad">Add to cart</button>
-            <div
-                id="menuList"
-                style="margin-top: 12px; border: 1px solid #ddd; padding: 12px"
-            ></div>
+            <div id="menuGrid" class="menu-grid"></div>
         </main>
+
         <script
             type="module"
             src="{{ url_for('static', filename='js/menu.js') }}"

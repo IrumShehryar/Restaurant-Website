@@ -1,15 +1,81 @@
 body {
-     font-family: system-ui, sans-serif; margin: 24px; 
-     background-color: #0c0c0c;
-     color: #739138;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
-.logo{
-     height : 10rem;
-     width: auto;
+
+.site-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #111;
 }
-h1{
-     color: #fc4908;
+
+.logo {
+    height: 60px;
+    margin-right: 20px;
 }
-h2{
-     color: hsl(0, 98%, 51%)
+
+h1 {
+    color: #ff4500;
+}
+
+h2 {
+    color: #ff4040;
+    margin-left: 20px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.menu-item {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.menu-item h3 {
+    color: #adff2f;
+    margin-top: 10px;
+}
+
+.menu-item p {
+    margin: 5px 0;
+    color: #ccc;
+}
+
+.menu-item button {
+    margin: 5px;
+    padding: 6px 12px;
+    border: none;
+    background-color: #ff4500;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menu-item button:hover {
+    background-color: #ff6347;
 }

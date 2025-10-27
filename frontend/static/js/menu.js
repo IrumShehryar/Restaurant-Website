@@ -1,33 +1,66 @@
-import { apiUrl } from "./utils/config.js";
-import fetchData from './utils/fetchData.js'
+const menuGrid = document.getElementById("menuGrid");
 
-async function loadMenu(){
-    const el = document.getElementById("menuList")
-    el.textContent = "Loading..."
-
-    try{
-        const items = await fetchData(apiUrl("menu"))
-       // el.innerHTML = items.map(i => `<b>${i.name}</b> - ${i.price}E <i>${i.category}</i> <br>`).join("") || "No Items"
-        //DECIDE:  which one to choose a simple list of items  as above or with buttons as below
-       el.innerHTML = (Array.isArray(items) && items.length)
-      ? items.map(i => `
-        <div class="menu-card" data-id="${i.id}">
-          <div class="menu-info">
-            <b>${i.name}</b>
-            <div class="menu-meta">${i.category} • ${i.price}€</div>
-          </div>
-          <div class="menu-actions">
-            <button class="btn-detail" data-id="${i.id}">Details</button>
-            <button class="btn-add" data-id="${i.id}">Add</button>
-          </div>
-        </div>`).join("")
-      : "No items available";
-    } catch(err){
-
-        el.textContent = "Failed to load the menu"
-        console.error(err)
+const menuItems = [
+    {
+        name: "Aurora Bites",
+        type: "starter",
+        price: "5.5€",
+        image: "burger.jpg"
+    },
+    {
+        name: "Nordic Salmon Skewers",
+        type: "starter",
+        price: "9.75€",
+        image: "burger.jpg"
+    },
+    {
+        name: "Smoked Trout Salad",
+        type: "starter",
+        price: "8.95€",
+        image: "burger.jpg"
+    },
+    {
+        name: "Reindeer Stew",
+        type: "main",
+        price: "14.5€",
+        image: "burger.jpg"
+    },
+    {
+        name: "Arctic Garden Bowl",
+        type: "main",
+        price: "12€",
+       image: "burger.jpg"
+    },
+    {
+        name: "Firewood Salmon",
+        type: "main",
+        price: "15.25€",
+        image: "burger.jpg"
+    },
+    {
+        name: "Lapland Dessert",
+        type: "dessert",
+        price: "6.75€",
+        image: "burger.jpg"
+    },
+    {
+        name: "Polar Night Cake",
+        type: "dessert",
+        price: "7.5€",
+        image: "burger.jpg"
     }
-    
-}
-document.addEventListener("DOMContentLoaded", loadMenu)
-//document.getElementById("btnLoad").addEventListener("click",loadMenu)
+];
+
+menuGrid.innerHTML = menuItems
+    .map(
+        item => `
+        <div class="menu-item">
+            <img src="/static/assets/${item.image}" alt="${item.name}">
+            <h3>${item.name}</h3>
+            <p>${item.type} • ${item.price}</p>
+            <button>Details</button>
+            <button>Add</button>
+        </div>
+    `
+    )
+    .join("");
