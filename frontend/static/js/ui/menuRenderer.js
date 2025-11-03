@@ -20,8 +20,8 @@ export function renderItemDetail(item) {
 	<h2>${item.name}</h2>
 	<p>${item.description}</p>
 	<p>${img}</p>
-	<p>${dietary}</p>
-	<p>Allergens:${allergens}</p>
+	<p>Diet: ${dietary}</p>
+	<p>Allergens: ${allergens}</p>
 	<p><strong>${item.price}€</strong></p>
 	<button id="modal-close">Close</button>
 </div>

@@ -19,7 +19,7 @@ Notes:
   (see backend/api/v1/menu/*).
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template,request
 from werkzeug.middleware.proxy_fix import ProxyFix
 from dotenv import load_dotenv
 from api.v1.menu.menu_routes import menu_bp
@@ -75,6 +75,11 @@ def menu_item(item_id):
         of the item details as JSON.
     """
     return render_template("menu.html")
+
+@app.route('/cart')
+def cart_page():
+    item_id = request.args.get('item')
+    return render_template('cart.html',added_item_id=item_id)
 
 
 if __name__ == "__main__":

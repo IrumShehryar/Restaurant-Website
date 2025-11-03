@@ -69,6 +69,16 @@ export function createMenuCard(item) {
     });
   }
 
+
+  const btnAdd = el.querySelector('.btn-add');
+  // Guard in case markup changes and the selector fails.
+  if (btnAdd) {
+    btnAdd.addEventListener('click', () => {
+      window.location.href=`/cart?item=${encodeURIComponent(item.id)}`
+    })
+}
+
   // Return the fully constructed card so the caller can append it to the list.
   return el;
 }
+
