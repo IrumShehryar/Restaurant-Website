@@ -23,6 +23,8 @@ from flask import Flask, render_template,request
 from werkzeug.middleware.proxy_fix import ProxyFix
 from dotenv import load_dotenv
 from api.v1.menu.menu_routes import menu_bp
+from api.utils.db import mongo_connect
+
 
 load_dotenv()
 
@@ -84,6 +86,7 @@ def cart_page():
 
 if __name__ == "__main__":
     # When run directly, read run settings from environment variables.
+    mongo_connect()
     app.run(
         host="127.0.0.1",
         port=os.getenv("PORT"),
