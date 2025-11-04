@@ -1,18 +1,95 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+    max-width: 100%;
+}
+
+html{  
+    font-family: "Ojuju", sans-serif; 
+    font-weight: 400;
+    font-style: normal;
+    font-size:100%;
+     color: #e0f4ff;
+}
+
 body {
-     font-family: system-ui, sans-serif; margin: 24px; 
-     background-color: #f7f5f5;
-     color: #739138;
+    background-color:#0b0b0b; margin: 0;
+     background: url("/static/assets/northernlight.jpg") center center/cover no-repeat;
 }
-.logo{
-     height : 10rem;
-     width: auto;
+
+header {
+   /* background: #025940;*/
+    display: flex; 
+    align-items:center;
+    justify-content:space-between; 
+    width:100%;
+    margin: 0;
+    padding: 0;
 }
-h1{
-     color: #fc4908;
+
+nav{ flex-grow: 1;}
+
+.nav-links{
+    display: flex; 
+    justify-content: center; 
+    list-style: none;
+    margin: 0;
+    padding: 0; 
+    gap: 2rem; 
+    flex:1;
 }
-h2{
-     color: hsl(0, 98%, 51%)
+
+/*.nav-links li:first-child { margin-left:auto; }*/
+.nav-links li:last-child { margin-right:1rem; }
+.nav-links a{
+    text-decoration: none; 
+    color: #a8d8ff;
+    font-weight: 600; 
+    padding: 0.5rem 1rem; 
+    transition: background-color 0.1s ease;    
 }
+
+.nav-links a:hover { background: #1a7d5c; }
+.nav-links a.active{ color: #00ff88; font-weight: bold;}
+.logo{ flex-shrink: 0; }
+   
+.logo img{ height: 5rem; display: block; }
+
+.hero{
+    width: 100%; 
+    height: auto;
+    /*background: url("/static/assets/northernlight.jpg") center center/cover no-repeat;*/
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.feature{ width: 100%; margin: 0 auto; padding: 0; }
+
+.feature img{
+     width: 95vw; 
+     height: 25rem;
+     display:block; 
+     object-fit:contain; 
+     object-position: center; }
+
+.feature p{ margin:1rem; line-height: 1.6;}
+
+/* Northern Lights Theme Colors */
+h1 { color: #00ff88; }
+h2 { color: #b366ff; }
+h3 { color: #7dd3e0; }
+p { color: #e0f4ff; }
 
 /* Minimal modal styles (unstyled functionality was added in JS) */
 #modal-root{
@@ -41,6 +118,49 @@ h2{
 }
 
 /* small responsive tweaks */
+@media (max-width: 1024px){
+     .nav-links{
+          gap: 1rem;
+     }
+     .nav-links a{
+          padding: 0.5rem 0.75rem;
+          font-size: 0.9rem;
+     }
+}
+
+@media (max-width: 768px){
+     header {
+          flex-direction: column;
+          gap: 1rem;
+     }
+     .nav-links{
+          flex-wrap: wrap;
+          gap: 1rem;
+     }
+     .nav-links a{
+          padding: 0.5rem 0.5rem;
+          font-size: 0.85rem;
+     }
+     .feature img{
+          height: 20rem;
+     }
+}
+
+@media (max-width: 480px){
+     .logo img{ height: 3rem; }
+     .nav-links{
+          flex-direction: column;
+          gap: 0.5rem;
+     }
+     .nav-links a{
+          padding: 0.5rem;
+          font-size: 0.75rem;
+     }
+     .feature img{
+          height: 15rem;
+     }
+}
+
 @media (min-width: 768px){
      #modal-root{align-items:center}
      #modal-box{max-width:720px}
