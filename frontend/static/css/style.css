@@ -7,6 +7,9 @@
 
 .container{
     max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 html{  
@@ -26,26 +29,67 @@ header {
    /* background: #025940;*/
     display: flex; 
     align-items:center;
-    justify-content:space-between; 
+    justify-content: flex-start;
     width:100%;
     margin: 0;
     padding: 0;
+    gap: 1rem;
 }
 
-nav{ flex-grow: 1;}
+nav{ 
+    flex-grow: 1;
+    margin-left: 0;
+}
 
 .nav-links{
     display: flex; 
-    justify-content: center; 
+    justify-content: flex-start;
+    align-items: center;
     list-style: none;
     margin: 0;
     padding: 0; 
     gap: 2rem; 
-    flex:1;
+    flex: 1;
+    width: 100%;
 }
 
 /*.nav-links li:first-child { margin-left:auto; }*/
 .nav-links li:last-child { margin-right:1rem; }
+
+/* Spacer to push Order Now to the right */
+.spacer {
+    flex-grow: 1;
+}
+
+/* Language switcher styling */
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.language-switcher a {
+    padding: 0.5rem 0.25rem;
+}
+
+.language-switcher span {
+    color: #a8d8ff;
+    margin: 0 0.25rem;
+}
+
+/* Order Now button styling */
+.btn-order-now {
+    background: #00ff88 !important;
+    color: #0b0b0b !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 1rem;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.btn-order-now:hover {
+    background: #00cc6f !important;
+}
 .nav-links a{
     text-decoration: none; 
     color: #a8d8ff;
@@ -54,12 +98,30 @@ nav{ flex-grow: 1;}
     transition: background-color 0.1s ease;    
 }
 
-.nav-links a:hover { background: #1a7d5c; }
+.nav-links a:hover { background: #1a7d5c; border-radius: 1rem;}
 .nav-links a.active{ color: #00ff88; font-weight: bold;}
 .logo{ flex-shrink: 0; }
    
 .logo img{ height: 5rem; display: block; }
 
+/* Language Switcher Styles */
+
+.language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.language-switcher a {
+  padding: 0.5rem 0.25rem;
+}
+
+.language-switcher span {
+  color: #a8d8ff;
+  margin: 0 0.25rem;
+}
+
+/* Hero Section */
 .hero{
     width: 100%; 
     height: auto;
@@ -84,6 +146,13 @@ nav{ flex-grow: 1;}
      object-position: center; }
 
 .feature p{ margin:1rem; line-height: 1.6;}
+
+/* Main content area - grows to push footer to bottom */
+main {
+    flex: 1;
+    width: 100%;
+    padding: 2rem 1rem;
+}
 
 /* Northern Lights Theme Colors */
 h1 { color: #00ff88; }
@@ -165,3 +234,68 @@ p { color: #e0f4ff; }
      #modal-root{align-items:center}
      #modal-box{max-width:720px}
 }
+
+/* ===== FOOTER STYLING STARTS HERE ===== */
+footer {
+  background: transparent;
+  color: #e0f4ff;
+  padding: 2rem;
+  margin-top: 2rem;
+  border-top: none;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.footer-section h3 {
+  color: #00ff88;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-section p {
+  margin: 0.5rem 0;
+  line-height: 1.2;
+  color: #e0f4ff;
+}
+
+.footer-section a {
+  color: #a8d8ff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-section a:hover {
+  color: #00ff88;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: right;
+  padding-top: 0.5rem;
+  border-top: none;
+  margin-top: 0;
+  font-size: 0.9rem;
+  color: #7dd3e0;
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+  footer {
+    padding: 1rem;
+  }
+}
+/* ===== FOOTER STYLING ENDS HERE ===== */

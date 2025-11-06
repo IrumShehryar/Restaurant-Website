@@ -1,66 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="Experience the magic of Nordic cuisine under dancing lights. A journey through flavors as mesmerizing as the aurora borealis."
+{% extends "base.html" %} {% block title %}Revontulet Flamehouse — Where Aurora
+Meets Culinary Art{% endblock %} {% block content %}
+<section class="hero">
+    <div class="feature">
+        <img
+            src="{{ url_for('static', filename='assets/hero-image.jpeg') }}"
+            alt="burger image"
         />
-        <title>Revontulet Flamehouse — Where Aurora Meets Culinary Art</title>
-        <link href="static/css/style.css" rel="stylesheet" />
-        <meta
-            name="description"
-            content="Experience the magic of Nordic cuisine under dancing lights. A journey through flavors as mesmerizing as the aurora borealis."
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
-            rel="stylesheet"
-        />
-    </head>
-    <body>
-        <div class="container">
-            <header>
-                <div class="logo">
-                    <img
-                        src="static/assets/revontulet_logo.png"
-                        alt="Burger logo"
-                    />
-                </div>
-
-                <nav>
-                    <ul class="nav-links">
-                        <li><a class="active" href="index.html">Menu</a></li>
-                        <li><a href="About_us.html">About Us</a></li>
-                        <li><a href="Cart.html">Order</a></li>
-                        <li><a href="Reservation.html">Reserve a Table</a></li>
-                    </ul>
-                </nav>
-            </header>
-
-            <main>
-                <section class="hero">
-                    <div class="feature">
-                        <img
-                            src="static/assets/hero-image.jpeg"
-                            alt="burger image"
-                        />
-                        <p>
-                            Lorem ipsum dolor sit, amet consectetur adipisicing
-                            elit. Et eos saepe iusto laudantium voluptatem
-                            laboriosam nulla, dolore est quidem eligendi
-                            consequatur veritatis id inventore magnam nemo
-                            omnis? Debitis, accusamus explicabo.
-                        </p>
-                    </div>
-                    <div class="hero-fade" aria-hidden="true"></div>
-                </section>
-            </main>
-        </div>
-    </body>
-</html>
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et eos
+            saepe iusto laudantium voluptatem laboriosam nulla, dolore est
+            quidem eligendi consequatur veritatis id inventore magnam nemo
+            omnis? Debitis, accusamus explicabo.
+        </p>
+    </div>
+    <div class="hero-fade" aria-hidden="true"></div>
+</section>
+{% endblock %}

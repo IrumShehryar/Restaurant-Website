@@ -78,6 +78,31 @@ def menu_item(item_id):
     """
     return render_template("menu.html")
 
+
+@app.get("/about")
+def about():
+    """Render the About Us page."""
+    return render_template("about.html")
+
+
+@app.get("/contact")
+def contact():
+    """Render the Contact Us page."""
+    return render_template("contact.html")
+
+
+@app.get("/reservation")
+def reservation():
+    """Render the Reservation/Reserve a Table page."""
+    return render_template("reservation.html")
+
+
+@app.get("/login")
+def login():
+    """Render the Login page."""
+    return render_template("login.html")
+
+
 @app.route('/cart')
 def cart_page():
     item_id = request.args.get('item')
