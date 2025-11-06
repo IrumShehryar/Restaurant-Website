@@ -1,0 +1,11 @@
+{% extends "base.html" %} {% block title %}Log In — Revontulet Flamehouse{%
+endblock %} {% block content %}
+<h2>Log In</h2>
+<form>
+    <label>Email: <input type="email" name="email" required /></label><br />
+    <label>Password: <input type="password" name="password" required /></label
+    ><br />
+    <button type="submit">Log In</button>
+</form>
+<p>Don't have an account? <a href="#">Sign up here</a></p>
+{% endblock %}

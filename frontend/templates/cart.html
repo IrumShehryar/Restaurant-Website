@@ -1,20 +1,9 @@
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
-        <title>Cart</title>
-        <link rel="stylesheet" href="/static/css/style.css" />
-    </head>
-    <body>
-        <header>
-            <h1>Your Cart</h1>
-        </header>
-        <main>
-            <section id="cart-items">
-                <!-- Cart items will be dynamically inserted here -->
-            </section>
-        </main>
-        <script src="/static/js/cart.js"></script>
-    </body>
-</html>
+{% extends "base.html" %} {% block title %}Cart — Revontulet Flamehouse{%
+endblock %} {% block content %}
+<h2>Your Cart</h2>
+<section id="cart-items">
+    <!-- Cart items will be dynamically inserted here -->
+</section>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+{% endblock %}

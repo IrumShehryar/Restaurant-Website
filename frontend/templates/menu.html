@@ -1,33 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Revontulet Flamehouse</title>
-        <link
-            rel="stylesheet"
-            href="{{ url_for('static', filename='css/style.css') }}"
-        />
-    </head>
-    <body>
-        <header class="site-header">
-            <img
-                src="{{ url_for('static', filename='assets/revontulet_logo.png') }}"
-                alt="Revontulet Flamehouse"
-                class="logo"
-            />
-            <h1>Revontulet Flamehouse</h1>
-        </header>
-        <main>
-            <h2>Menu</h2>
-            <!--<button id="btnLoad">Add to cart</button>-->
-            <div
-                id="menuList"
-                style="margin-top: 12px; border: 1px solid #ddd; padding: 12px"
-            ></div>
-        </main>
-        <script
-            type="module"
-            src="{{ url_for('static', filename='js/menu.js') }}"
-        ></script>
-    </body>
-</html>
+{% extends "base.html" %} {% block title %}Menu — Revontulet Flamehouse{%
+endblock %} {% block content %}
+<h2>Menu</h2>
+<div
+    id="menuList"
+    style="margin-top: 12px; border: 1px solid #ddd; padding: 12px"
+></div>
+{% endblock %} {% block scripts %}
+<script
+    type="module"
+    src="{{ url_for('static', filename='js/menu.js') }}"
+></script>
+{% endblock %}
