@@ -12,13 +12,21 @@ import { createModal } from './components/Modal.js';
 
 /**
  * Load the menu list into the #menuList container.
+ * 
  * Steps:
  *  1) Show a loading state
- *  2) Fetch items
- *  3) Render cards efficiently using a DocumentFragment
- *  4) Handle empty results and errors
+ *  2) Fetch items from menu service
+ *  3) Render cards efficiently using DocumentFragment
+ *  4) Handle empty results and errors gracefully
  *
+ * @async
+ * @function loadMenu
  * @returns {Promise<void>}
+ * @throws {Error} If menu service fails to load items
+ * 
+ * @example
+ * // Called on page load
+ * await loadMenu();
  */
 async function loadMenu() {
   const el = document.getElementById("menuList");
@@ -49,9 +57,23 @@ async function loadMenu() {
 const modal = createModal();
 
 /**
- * Fetch a single item by id and show it in the modal.
+ * Fetch a single menu item by ID and display it in the modal.
+ * 
+ * This function:
+ * - Fetches item details from the menu service
+ * - Renders the item in detail format
+ * - Opens the modal with the rendered content
+ * - Closes when user clicks the close button
  *
- * @param {number} id - The menu item id to load.
+ * @async
+ * @function showDetail
+ * @param {number} id - The menu item ID to load and display
+ * @returns {Promise<void>}
+ * @throws {Error} If item fetch fails (logged to console)
+ * 
+ * @example
+ * // Show menu item #5
+ * await showDetail(5);
  */
 async function showDetail(id) {
   try {
@@ -66,6 +88,15 @@ async function showDetail(id) {
 }
 
 // Initialize when DOM is available. Attach event listeners after #menuList exists
+/**
+ * Initialize the menu page when the DOM is ready.
+ * 
+ * Sets up:
+ * - Initial menu list loading
+ * - Event listener for custom 'show-detail' events from menu cards
+ * 
+ * @listens DOMContentLoaded
+ */
 document.addEventListener("DOMContentLoaded", () => {
   loadMenu();
 

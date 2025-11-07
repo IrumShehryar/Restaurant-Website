@@ -1,8 +1,35 @@
 {% extends "base.html" %} {% block title %}Contact Us — Revontulet Flamehouse{%
 endblock %} {% block content %}
-<h2>Contact Us</h2>
-<p><strong>Address:</strong> 123 Aurora Street, Helsinki, Finland</p>
-<p><strong>Phone:</strong> +358 (0) 123 456 789</p>
-<p><strong>Email:</strong> info@revontulet.com</p>
-<p>Feel free to reach out with any questions or inquiries!</p>
+
+<div class="contact-feature">
+    <div class="contact-left">
+        <h2>Contact Us</h2>
+        <p><strong>Address:</strong> Karaportti 2, Espoo, Finland</p>
+        <p><strong>Phone:</strong> +358 (0) 123 456 789</p>
+        <p><strong>Email:</strong> info@revontulet.com</p>
+        <p>Feel free to reach out with any questions or inquiries!</p>
+    </div>
+    <div class="contact-right">
+        <h3>🚌 Getting Here</h3>
+
+        <iframe
+            src="https://www.google.com/maps?q=Karaportti%202,Espoo,Finland&z=15&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            width="420"
+            height="300"
+            style="border: 0"
+        >
+        </iframe>
+        <!-- Transportation Options -->
+        <div class="transport-options">
+            <p>
+                <a href="https://www.hsl.fi/" target="_blank" rel="noopener">
+                    Plan your journey with HSL
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
