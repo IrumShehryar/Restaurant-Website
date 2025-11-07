@@ -1,18 +1,52 @@
 {% extends "base.html" %} {% block title %}Revontulet Flamehouse — Where Aurora
 Meets Culinary Art{% endblock %} {% block content %}
+
 <section class="hero">
-    <div class="feature">
-        <img
-            src="{{ url_for('static', filename='assets/hero-image.jpeg') }}"
-            alt="burger image"
+    <video class="hero-video-background" autoplay muted loop>
+        <source
+            src="{{ url_for('static', filename='videos/green_animation.mp4') }}"
+            type="video/mp4"
         />
-        <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Et eos
-            saepe iusto laudantium voluptatem laboriosam nulla, dolore est
-            quidem eligendi consequatur veritatis id inventore magnam nemo
-            omnis? Debitis, accusamus explicabo.
-        </p>
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Original fire animation (commented out) -->
+    {#
+    <video class="hero-video-background" autoplay muted loop>
+        <source
+            src="{{ url_for('static', filename='videos/fire.mp4') }}"
+            type="video/mp4"
+        />
+        Your browser does not support the video tag.
+    </video>
+    #}
+
+    <!-- Original hero image (commented out) -->
+    {#
+    <img
+        src="{{ url_for('static', filename='assets/hero-image.jpeg') }}"
+        alt="Burgers and drinks"
+        class="hero-image"
+    />
+    #}
+
+    <div class="hero-content">
+        <div class="hero-left">
+            <p class="hero-tagline">ARCTIC • AURORA • FLAME</p>
+            <h1 class="hero-title">Where Aurora Meets Flavor.</h1>
+            <p class="hero-description">
+                Experience Nordic cuisine inspired by the mystical northern
+                lights. Crafted with passion, served with soul.
+            </p>
+
+            <div class="hero-features">
+                <span>🌌 Nordic Cuisine</span>
+                <span>❄️ Fresh Ingredients</span>
+                <span>🔥 Arctic Passion</span>
+            </div>
+        </div>
     </div>
     <div class="hero-fade" aria-hidden="true"></div>
 </section>
+
 {% endblock %}

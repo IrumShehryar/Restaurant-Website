@@ -365,3 +365,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,pycharm,visualstudiocode,python
+
+# Auto-generated documentation (regenerate with: jsdoc or apidoc)
+docs/jsdoc/
+docs/apidoc/
+
+
