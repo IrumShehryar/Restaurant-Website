@@ -22,7 +22,7 @@ html{
 }
 
 body {
-    background-image: url("./assets/northernlight.jpg");
+    background-image: url("/static/assets/northernlight.jpg");
     background-attachment: fixed;
     background-position: center center;
     background-size: cover;
@@ -556,4 +556,3 @@ footer {
     color: #7dd3e0;
     border-bottom-color: #00ff88;
 }
-
