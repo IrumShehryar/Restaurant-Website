@@ -5,16 +5,18 @@
 We have TWO separate folders for different purposes:
 
 ### **Folder 1: `frontend/templates/` & `frontend/static/css/`**
-- ✅ **This is where you DEVELOP**
-- ✅ Used with Flask backend
-- ✅ Real working application
-- ✅ Connected to database & APIs
+
+-   ✅ **This is where you DEVELOP**
+-   ✅ Used with Flask backend
+-   ✅ Real working application
+-   ✅ Connected to database & APIs
 
 ### **Folder 2: `frontend/public/`**
-- ✅ **This is for TEACHER DEMO**
-- ✅ Static HTML files only
-- ✅ No Flask backend needed
-- ✅ Works on GitHub Pages
+
+-   ✅ **This is for TEACHER DEMO**
+-   ✅ Static HTML files only
+-   ✅ No Flask backend needed
+-   ✅ Works on GitHub Pages
 
 ---
 
@@ -27,9 +29,10 @@ git pull origin main
 ```
 
 This downloads:
-- Latest changes from team
-- New `frontend/public/` folder (static demo)
-- All updated `frontend/templates/` and `frontend/static/css/`
+
+-   Latest changes from team
+-   New `frontend/public/` folder (static demo)
+-   All updated `frontend/templates/` and `frontend/static/css/`
 
 ---
 
@@ -40,9 +43,10 @@ git checkout -b feature/layout-improvements
 ```
 
 Replace `layout-improvements` with your feature name. Examples:
-- `feature/hero-redesign`
-- `feature/menu-page-update`
-- `feature/footer-styling`
+
+-   `feature/hero-redesign`
+-   `feature/menu-page-update`
+-   `feature/footer-styling`
 
 ---
 
@@ -83,6 +87,7 @@ python app.py
 ```
 
 Then open in browser:
+
 ```
 http://127.0.0.1:5000
 ```
@@ -101,6 +106,7 @@ git commit -m "Improve [page name] layout - [what you changed]"
 ```
 
 Examples:
+
 ```powershell
 git commit -m "Improve home page hero section with better spacing"
 git commit -m "Redesign menu page card layout"
@@ -180,31 +186,33 @@ frontend/
 
 ## Quick Reference
 
-| Task | Command |
-|------|---------|
-| Get latest code | `git pull origin main` |
+| Task               | Command                                |
+| ------------------ | -------------------------------------- |
+| Get latest code    | `git pull origin main`                 |
 | Create your branch | `git checkout -b feature/your-feature` |
-| Commit changes | `git add . && git commit -m "message"` |
-| Push branch | `git push origin feature/your-feature` |
-| Test locally | `cd backend && python app.py` |
-| Access local site | `http://127.0.0.1:5000` |
+| Commit changes     | `git add . && git commit -m "message"` |
+| Push branch        | `git push origin feature/your-feature` |
+| Test locally       | `cd backend && python app.py`          |
+| Access local site  | `http://127.0.0.1:5000`                |
 
 ---
 
 ## Important Rules
 
 ✅ **DO:**
-- Work on `frontend/templates/` and `frontend/static/css/`
-- Create your own branch
-- Test locally before pushing
-- Commit with clear messages
-- Push to your branch (not main)
+
+-   Work on `frontend/templates/` and `frontend/static/css/`
+-   Create your own branch
+-   Test locally before pushing
+-   Commit with clear messages
+-   Push to your branch (not main)
 
 ❌ **DO NOT:**
-- Edit `frontend/public/` (team lead handles this)
-- Push directly to `main` (always use feature branches)
-- Push to `gh-pages` (team lead handles this)
-- Modify `backend/` or `app.py` (backend team handles this)
+
+-   Edit `frontend/public/` (team lead handles this)
+-   Push directly to `main` (always use feature branches)
+-   Push to `gh-pages` (team lead handles this)
+-   Modify `backend/` or `app.py` (backend team handles this)
 
 ---
 
@@ -242,9 +250,10 @@ git push origin feature/hero-animation
 ## Questions?
 
 Ask your team lead (me) if you have questions about:
-- How to make specific edits
-- Merge conflicts
-- Git commands
-- Design requirements
+
+-   How to make specific edits
+-   Merge conflicts
+-   Git commands
+-   Design requirements
 
 Happy coding! 🚀
