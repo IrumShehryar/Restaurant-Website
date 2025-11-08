@@ -1,8 +1,9 @@
 # copy-to-docs.ps1
-# This script copies files from frontend/templates and frontend/static to docs/ for GitHub Pages
-# Run this before pushing to GitHub whenever you update the website
+# This script copies static assets from frontend/static to docs/ for GitHub Pages
+# The HTML files in docs/ are static (not copied from Jinja2 templates)
+# If you update HTML pages, edit them directly in docs/ folder
 
-Write-Host "Syncing frontend/templates and frontend/static to docs/ folder..." -ForegroundColor Cyan
+Write-Host "Syncing frontend/static to docs/ folder..." -ForegroundColor Cyan
 
 # Create docs folder if it doesn't exist
 if (!(Test-Path "docs")) {
@@ -10,10 +11,7 @@ if (!(Test-Path "docs")) {
     Write-Host "[OK] Created docs folder"
 }
 
-# Copy HTML files from templates to docs
-Write-Host "Copying HTML files..." -ForegroundColor Yellow
-Copy-Item -Path "frontend/templates/*.html" -Destination "docs/" -Force
-Write-Host "[OK] HTML files copied"
+Write-Host "Note: HTML files in docs/ are static. Edit them directly." -ForegroundColor Cyan
 
 # Copy CSS from static to docs/css
 Write-Host "Copying CSS..." -ForegroundColor Yellow
