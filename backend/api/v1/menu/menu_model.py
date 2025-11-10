@@ -9,8 +9,24 @@ small helper functions used by the controllers:
 The dataset is intentionally small and self-contained so the project can
 run without a database during development and testing.
 """
-
+from mongoengine import Document , StringField, FloatField, ListField, BooleanField
+from bson import ObjectId
 # Mock data (16 items) for Revontulet Flamehouse
+
+class MenuItem(Document):
+    
+    name =  StringField (required = True)
+    description= StringField()
+    price = FloatField()
+    category = StringField(required = True, choices = ["starter","main","dessert","side","drink","special"])
+    image = StringField()
+    dietary = ListField(StringField(choices =["vegetarian","vegan","gluten-free","dairy-free"]))
+    allergens = ListField(StringField())
+    days_of_week = ListField(StringField())
+    active = BooleanField()
+    
+    
+"""
 menu_items = [
     {
         "id": 1,
@@ -190,38 +206,145 @@ menu_items = [
     }
 ]
 
-
+"""
 def list_all_menu_items():
-    """Return a list of all menu items.
-
-    Returns:
-        list[dict]: A list of menu item dictionaries. Each item contains
-        keys such as ``id``, ``name``, ``description``, ``price``,
-        ``category``, ``image``, ``dietary``, ``allergens``, and
-        ``available_days``.
-
-    Example:
-        >>> items = list_all_menu_items()
-        >>> isinstance(items, list)
-        True
     """
-    return menu_items
+    Retrieve all menu items from the MongoDB database.
+    
+    This function queries the MenuItem collection and returns all documents.
+    Called by the controller to fetch the complete menu.
+    
+    Returns:
+        QuerySet: MongoEngine QuerySet containing all MenuItem objects.
+                  Each item is a MongoDB document with fields: name, price, 
+                  category, description, dietary, allergens, days_of_week, active.
+    
+    Example:
+        items = list_all_menu_items()
+        for item in items:
+            print(item.name, item.price)
+    """
+    return MenuItem.objects()
 
 
 def get_menu_by_id(item_id):
-    """Return a single menu item matching ``item_id``.
-
-    Args:
-        item_id (int): The id of the requested menu item.
-
-    Returns:
-        dict | None: The menu item dictionary if found, otherwise ``None``.
-
-    Note:
-        The function performs a linear search over the in-memory list, which
-        is fine for the small mock dataset used in development.
     """
-    for item in menu_items:
-        if item["id"] == (item_id):
-            return item
-    return None
+    Find a single menu item by its MongoDB ObjectId.
+    
+    Converts the string item_id to a MongoDB ObjectId, then searches the
+    database. Returns None if the item is not found or if the conversion fails.
+    
+    Args:
+        item_id (str): The MongoDB ObjectId as a string (e.g., "691211b751476ba3fc35b9f5")
+    
+    Returns:
+        MenuItem | None: The MenuItem object if found, otherwise None.
+    
+    Example:
+        item = get_menu_by_id("691211b751476ba3fc35b9f5")
+        if item:
+            print(item.name)
+        else:
+            print("Item not found")
+    """
+    try:
+        return MenuItem.objects.get(id = ObjectId(item_id))
+    except:
+        return None
+  
+def add_menu_item(item_data):
+    """
+    Create and save a new menu item to the database.
+    
+    Extracts fields from the incoming request data using .get() to provide
+    defaults if keys are missing. Creates a new MenuItem object and saves it
+    to MongoDB.
+    
+    Args:
+        item_data (dict): JSON data from the HTTP request containing:
+                         - name (str, required): Item name
+                         - description (str): Item description
+                         - price (float): Item price
+                         - category (str): One of ["starter", "main", "dessert", "side", "drink", "special"]
+                         - image (str): URL to item image
+                         - dietary (list): List of dietary labels (e.g., ["vegetarian", "vegan"])
+                         - allergens (list): List of allergens (e.g., ["gluten", "dairy"])
+                         - days_of_week (list): Days this item is available
+                         - active (bool): Whether item is currently active (default: True)
+    
+    Returns:
+        MenuItem: The newly created MenuItem object with MongoDB _id assigned.
+    
+    Example:
+        data = {
+            "name": "Aurora Bites",
+            "price": 5.50,
+            "category": "starter",
+            "dietary": ["vegetarian"],
+            "allergens": ["milk"]
+        }
+        new_item = add_menu_item(data)
+        print(new_item.id)  # MongoDB ObjectId
+    """
+    new_item = MenuItem(
+        name = item_data.get('name'),
+        description = item_data.get('description'),
+        price = item_data.get('price'),
+        category = item_data.get('category'),
+        image = item_data.get('image'),
+        dietary = item_data.get('dietary',[]),
+        allergens = item_data.get('allergens',[]),
+        days_of_week = item_data.get('days_of_week',[]),
+        active = item_data.get('active',True)
+        
+    )
+    new_item.save()
+    return new_item
+
+def update_menu_item(item_id,item_data):
+    """
+    Update an existing menu item with new data.
+    
+    Finds the item by ID and updates only the fields provided in item_data.
+    Uses MongoEngine's .update(**item_data) which performs a partial update
+    (only specified fields are changed, others remain unchanged).
+    
+    Args:
+        item_id (str): The MongoDB ObjectId as a string
+        item_data (dict): Dictionary of fields to update (e.g., {"price": 12.99})
+    
+    Returns:
+        MenuItem: The updated MenuItem object.
+    
+    Raises:
+        DoesNotExist: If no item with that ID exists (caught by controller).
+    
+    Example:
+        update_data = {"price": 12.99, "name": "Updated Name"}
+        updated_item = update_menu_item("691211b751476ba3fc35b9f5", update_data)
+    """
+    item = MenuItem.objects.get(id=item_id)
+    item.update(**item_data)
+    return item
+
+def delete_menu_item(item_id):
+    """
+    Delete a menu item from the database.
+    
+    Finds the item by ID and removes it from MongoDB completely.
+    
+    Args:
+        item_id (str): The MongoDB ObjectId as a string
+    
+    Returns:
+        dict: A success message dictionary {"message": "Item deleted successfully"}
+    
+    Raises:
+        DoesNotExist: If no item with that ID exists (caught by controller).
+    
+    Example:
+        result = delete_menu_item("691211b751476ba3fc35b9f5")
+        print(result)  # {"message": "Item deleted successfully"}
+    """
+    MenuItem.objects.get(id=item_id).delete()
+    return{"message": "Item deleted successfully"}

@@ -10,3 +10,30 @@ GET http://127.0.0.1:5000/api/v1/menu/5
 GET http://127.0.0.1:5000/api/v1/menu/0
 ### Get single menu item malformed input
 GET http://127.0.0.1:5000/api/v1/menu/-
+
+### post an item
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+  "name": "Test Item2",
+  "description": "Test description",
+  "price": 9.99,
+  "category": "starter",
+  "image": "url",
+  "dietary": [],
+  "allergens": [],
+  "days_of_weeks": ["Monday"],
+  "active": true
+}
+###update an item
+PUT http://localhost:5000/api/v1/menu/6912113b51476ba3fc35b9f4
+Content-Type: application/json
+
+{
+  "price": 15.99,
+  "name": "burger",
+  "allergens": ["gluten"]
+}
+### Delete an item
+DELETE http://localhost:5000/api/v1/menu/6912113b51476ba3fc35b9f4
