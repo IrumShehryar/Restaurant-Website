@@ -1,0 +1,8 @@
+{
+  "name": "Restaurant Menu API",
+  "version": "1.0.0",
+  "description": "REST API for managing Revontulet Flamehouse restaurant menu items with MongoDB",
+  "title": "Menu API Documentation",
+  "url": "http://localhost:5000/api/v1",
+  "sampleUrl": "http://localhost:5000/api/v1"
+}
