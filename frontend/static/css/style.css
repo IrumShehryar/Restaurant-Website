@@ -530,7 +530,7 @@ footer {
 }
 .contact-right iframe{
     width:100%; max-width:100%; display: block;
-    margin:  auto ; border-radius: 3rem;padding: 2rem 2rem;
+    margin:  auto ; border-radius: 4rem;padding: 2rem 2rem;
     height: clamp(18rem, 40vh, 26rem);
 }
 
