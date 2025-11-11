@@ -323,9 +323,14 @@ def update_menu_item(item_id,item_data):
         update_data = {"price": 12.99, "name": "Updated Name"}
         updated_item = update_menu_item("691211b751476ba3fc35b9f5", update_data)
     """
-    item = MenuItem.objects.get(id=item_id)
+    # FIX: Added ObjectId() conversion for item_id
+    # ISSUE: String ID must be converted to MongoDB ObjectId for database query
+    item = MenuItem.objects.get(id=ObjectId(item_id))
     item.update(**item_data)
-    return item
+    # FIX: Re-fetch the updated item before returning
+    # ISSUE: .update() doesn't return the updated document, so we fetch it again
+    # to ensure the response contains the latest data
+    return MenuItem.objects.get(id=ObjectId(item_id))
 
 def delete_menu_item(item_id):
     """
@@ -346,5 +351,7 @@ def delete_menu_item(item_id):
         result = delete_menu_item("691211b751476ba3fc35b9f5")
         print(result)  # {"message": "Item deleted successfully"}
     """
-    MenuItem.objects.get(id=item_id).delete()
+    # FIX: Added ObjectId() conversion for item_id
+    # ISSUE: String ID must be converted to MongoDB ObjectId for database query
+    MenuItem.objects.get(id=ObjectId(item_id)).delete()
     return{"message": "Item deleted successfully"}

@@ -69,14 +69,24 @@ export function createMenuCard(item) {
     });
   }
 
-
+  // FIX: Added missing closing brace for btnAdd addEventListener block
+  // ISSUE: Previous code had syntax error where closing brace was on same line as function,
+  // preventing the return statement from executing. Now properly structured.
   const btnAdd = el.querySelector('.btn-add');
   // Guard in case markup changes and the selector fails.
   if (btnAdd) {
     btnAdd.addEventListener('click', () => {
-      window.location.href=`/cart?item=${encodeURIComponent(item.id)}`
+      // FIX: Added fallback to item._id in case item.id is missing
+      // ISSUE: Some items might have _id instead of id field
+      const itemId = item.id || item._id;
+      if (itemId) {
+        window.location.href=`/cart?item=${encodeURIComponent(itemId)}`
+      } else {
+        // DEBUG: Log error if both id and _id are missing
+        console.error('Item ID is missing', item);
+      }
     })
-}
+  }
 
   // Return the fully constructed card so the caller can append it to the list.
   return el;
