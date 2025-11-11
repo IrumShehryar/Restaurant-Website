@@ -8,7 +8,9 @@
 import { getAllMenu, getMenuById } from "./services/menuService.js";
 import { createMenuCard } from "./components/menuCard.js";
 import { renderItemDetail } from './ui/menuRenderer.js';
-import { createModal } from './components/Modal.js';
+// FIX: Changed from './components/Modal.js' (incorrect capitalization) to './components/modal.js'
+// ISSUE: Module import was failing because filename is lowercase 'modal.js' not 'Modal.js'
+import { createModal } from './components/modal.js';
 
 /**
  * Load the menu list into the #menuList container.
@@ -78,6 +80,8 @@ const modal = createModal();
 async function showDetail(id) {
   try {
     const item = await getMenuById(id);
+    // DEBUG: Log fetched item to console for debugging purposes
+    console.log('Item fetched:', item);
     modal.setContent(renderItemDetail(item));
     modal.open();
     // The modal factory also wires the element with id="modal-close" if present
@@ -105,7 +109,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Listen for custom 'show-detail' events dispatched by cards.
     menuListEl.addEventListener('show-detail', (e) => {
       const id = e.detail?.id;
-      if (id != null) showDetail(Number(id));
+      // FIX: Removed Number(id) conversion that was causing NaN
+      // ISSUE: MongoDB ObjectIds are strings (e.g., "691211b751476ba3fc35b9f5"), 
+      // converting to Number results in NaN. Pass the string ID directly to the API.
+      if (id != null) showDetail(id);
     });
   }
 });
