@@ -109,6 +109,12 @@ def cart_page():
     return render_template('cart.html',added_item_id=item_id)
 
 
+@app.get("/menu-test")
+def menu_test():
+    """Render a test menu page to verify grid CSS is working."""
+    return render_template("menu-test.html")
+
+
 if __name__ == "__main__":
     # When run directly, read run settings from environment variables.
     mongo_connect()

@@ -2,37 +2,6 @@
 Meets Culinary Art{% endblock %} {% block content %}
 
 <section class="hero">
-    <!-- Green animation (commented out) -->
-    {#
-    <video class="hero-video-background" autoplay muted loop>
-        <source
-            src="{{ url_for('static', filename='videos/green_animation.mp4') }}"
-            type="video/mp4"
-        />
-        Your browser does not support the video tag.
-    </video>
-    #}
-
-    <!-- Original fire animation (commented out) -->
-    {#
-    <video class="hero-video-background" autoplay muted loop>
-        <source
-            src="{{ url_for('static', filename='videos/fire.mp4') }}"
-            type="video/mp4"
-        />
-        Your browser does not support the video tag.
-    </video>
-    #}
-
-    <!-- Original hero image (commented out) -->
-    {#
-    <img
-        src="{{ url_for('static', filename='assets/hero-image.jpeg') }}"
-        alt="Burgers and drinks"
-        class="hero-image"
-    />
-    #}
-
     <div class="hero-content">
         <div class="hero-left">
             <p class="hero-tagline">ARCTIC • AURORA • FLAME</p>
@@ -47,6 +16,13 @@ Meets Culinary Art{% endblock %} {% block content %}
                 <span>❄️ Fresh Ingredients</span>
                 <span>🔥 Arctic Passion</span>
             </div>
+        </div>
+        <div class="hero-right">
+            <img
+                class="hero-image"
+                src="{{ url_for('static', filename='assets/hero1.jpg') }}"
+                alt="Burgers and drinks"
+            />
         </div>
     </div>
     <div class="hero-fade" aria-hidden="true"></div>
