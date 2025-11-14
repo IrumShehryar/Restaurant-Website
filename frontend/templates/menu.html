@@ -1,13 +1,13 @@
-{% extends "base.html" %} {% block title %}Menu — Revontulet Flamehouse{%
-endblock %} {% block content %}
+{% extends "base.html" %}
+{% block title %}Menu — Revontulet Flamehouse{% endblock %}
+
+{% block content %}
 <h2>Menu</h2>
-<div
-    id="menuList"
-    style="margin-top: 12px; border: 1px solid #ddd; padding: 12px"
-></div>
-{% endblock %} {% block scripts %}
-<script
-    type="module"
-    src="{{ url_for('static', filename='js/menu.js') }}"
-></script>
+
+<!-- Responsive Grid Container -->
+<div id="menuList" class="menu-grid"></div>
+{% endblock %}
+
+{% block scripts %}
+<script type="module" src="{{ url_for('static', filename='js/menu.js') }}"></script>
 {% endblock %}
