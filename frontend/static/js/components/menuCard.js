@@ -27,6 +27,11 @@ export function createMenuCard(item) {
   // NOTE: innerHTML is convenient, but if item fields may contain untrusted content,
   // prefer creating nodes and setting textContent to avoid injection.
   el.innerHTML = `
+    <img
+      class="menu-card__image"
+      src="${item.image_url || '/static/assets/hero-image.jpeg'}"
+      alt="${item.name}"
+    >
     <div class="menu-info">
       <!-- Title for the menu item -->
       <b class="menu-card__title">${item.name}</b>
@@ -46,7 +51,7 @@ export function createMenuCard(item) {
       </button>
 
       <!-- "Add" button. We also put the id here for quick access via dataset. -->
-      <button class="btn-add" data-id="${item.id}">Add</button>
+      <button class="btn-add" data-id="${item.id|| item._id}">Add</button>
     </div>
   `;
 
