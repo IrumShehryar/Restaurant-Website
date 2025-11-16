@@ -65,7 +65,7 @@ function showCartButton() {
 
   // Update text & count
   const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
-  cartBtn.textContent = 🛒 View Cart (${totalItems});
+  cartBtn.textContent = `🛒 View Cart (${totalItems})`;
   cartBtn.style.display = "block";
 }
 
@@ -144,7 +144,7 @@ export function addToCart(item) {
 
   // UI updates
   showCartButton();
-  showNotification(${item.name} added to cart!);
+  showNotification(`${item.name} added to cart!`);
 
   console.log("Cart updated:", cart);
 }
