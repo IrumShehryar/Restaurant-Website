@@ -13,6 +13,7 @@
  * @param {number} item.price
  * @returns {HTMLElement} A DOM node representing the card.
  */
+import {addToCart} from "../cart.js"
 export function createMenuCard(item) {
   // Create the root container for the card: <div class="menu-card">
   const el = document.createElement('div');
@@ -80,16 +81,11 @@ export function createMenuCard(item) {
   const btnAdd = el.querySelector('.btn-add');
   // Guard in case markup changes and the selector fails.
   if (btnAdd) {
-    btnAdd.addEventListener('click', () => {
-      // FIX: Added fallback to item._id in case item.id is missing
-      // ISSUE: Some items might have _id instead of id field
-      const itemId = item.id || item._id;
-      if (itemId) {
-        window.location.href=`/cart?item=${encodeURIComponent(itemId)}`
-      } else {
-        // DEBUG: Log error if both id and _id are missing
-        console.error('Item ID is missing', item);
-      }
+    btnAdd.addEventListener('click', (e) => {
+      e.stopPropagation();
+      addToCart(item)
+      
+    console.log("Add button clicked for:", item);
     })
   }
 

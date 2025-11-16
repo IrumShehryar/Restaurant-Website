@@ -11,7 +11,7 @@ import { renderItemDetail } from './ui/menuRenderer.js';
 // FIX: Changed from './components/Modal.js' (incorrect capitalization) to './components/modal.js'
 // ISSUE: Module import was failing because filename is lowercase 'modal.js' not 'Modal.js'
 import { createModal } from './components/modal.js';
-
+import { initCartUI } from "./cart.js";
 /**
  * Load the menu list into the #menuList container.
  * 
@@ -103,6 +103,7 @@ async function showDetail(id) {
  */
 document.addEventListener("DOMContentLoaded", () => {
   loadMenu();
+  initCartUI();
 
   const menuListEl = document.getElementById('menuList');
   if (menuListEl) {
