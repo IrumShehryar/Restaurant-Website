@@ -5,6 +5,14 @@
   padding: 0;
 }
 
+/* Theme variables for modal styling */
+:root{
+     --modal-bg: rgba(17,20,22,0.95);       /* modal box background (dark glass) */
+     --modal-overlay: rgba(0,0,0,0.60);     /* backdrop / overlay */
+     --modal-text: #e0f4ff;                 /* modal text color */
+     --modal-accent: #00ff88;               /* buttons / close accent */
+}
+
 .container{
     max-width: 100%;
     display: flex;
@@ -288,22 +296,27 @@ p { color: #e0f4ff; }
      align-items: flex-start;
      justify-content: center;
      padding: 4vh 1rem;
-     background: rgba(0,0,0,0.35);
+     background: var(--modal-overlay);
+     z-index: 9999;
 }
 #modal-box{
-     background: #fff;
-     border-radius: 6px;
-     max-width: 900px;
+     background: var(--modal-bg);
+     color: var(--modal-text);
+     border-radius: 2rem;
+     /* light border matching the menu cards */
+     border: 1px solid rgba(0, 255, 136, 0.25);
+     max-width: 56rem;
      width: 100%;
-     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+     box-shadow: 0 1rem 3rem rgba(0,0,0,0.2);
      overflow: auto;
+     padding: 1rem;
 }
 #modal-content{
      padding: 18px;
 }
 #modal-content img{max-width:100%;height:auto;display:block;margin:8px 0}
 #modal-content #modal-close{
-     display:inline-block;margin-top:12px;padding:6px 10px;border:none;background:#ddd;border-radius:4px;cursor:pointer
+     display:inline-block;margin-top:12px;padding:6px 10px;border:none;background:var(--modal-accent);color:#0b0b0b;border-radius:4px;cursor:pointer
 }
 
 /* small responsive tweaks */
