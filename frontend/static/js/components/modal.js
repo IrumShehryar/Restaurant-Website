@@ -35,10 +35,12 @@ export function createModal() {
 		root.style.width = '100%'
 		root.style.height = '100%'
 		root.style.display = 'none'
+		// backdrop color (semi-transparent) so modal stands out; change in CSS if desired
+		root.style.background = 'rgba(0,0,0,0.45)'
 		root.style.zIndex = '9999'
 
 		root.innerHTML = `
-			<div id="modal-box" style="margin:4% auto;max-width:900px;background:#fff;padding:12px;">
+			<div id="modal-box" style="margin:4% auto;max-width:900px;background:var(--modal-bg,#ffff);padding:12px;">
 				<div id="modal-content"></div>
 			</div>
 		`

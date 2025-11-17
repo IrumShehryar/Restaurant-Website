@@ -13,8 +13,19 @@ export function renderItemDetail(item) {
 	// Keep it simple — styling can be added later.
 	const allergens = Array.isArray(item.allergens) ? item.allergens.join(', ') : ''
 	const dietary = Array.isArray(item.dietary) ? item.dietary.join(', ') : (item.dietary || '')
-	const img = item.image ? `<img src="${item.image}" alt="${item.name}" />` : ''
-
+	// resolve image source: keep absolute/full URLs, otherwise prefix the assets folder
+	// encode filenames so spaces, apostrophes, etc. won't break the URL
+	const imgSrc = item.image
+		? (item.image.startsWith('/') || item.image.startsWith('http')
+			? item.image
+			: `/static/assets/${encodeURIComponent(item.image)}`)
+		: null;
+	// add a local fallback (hero-image.jpeg) when external image fails to load
+	const img = imgSrc
+		? `<img src="${imgSrc}" alt="${item.name}" onerror="this.onerror=null;this.src='/static/assets/hero-image.jpeg'" />`
+		: ''
+console.log('renderItemDetail item.image ->', item.image);
+console.log('renderItemDetail resolved imgSrc ->', imgSrc);
 	return `
 <div class="menu-detail">
 	<h2>${item.name}</h2>
