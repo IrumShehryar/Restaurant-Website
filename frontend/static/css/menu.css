@@ -32,6 +32,22 @@
   color: #b366ff; /* purple accent to match site headings */
 }
 
+/* Make the menu item title visually distinct from the meta line */
+.menu-card__title {
+  color: #ffd166; /* warm amber for item title */
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+}
+.menu-card__meta {
+  color: #9fb0b2; /* muted meta color for category/price line */
+  font-size: 0.9rem;
+}
+.menu-card__price {
+  color: #00ff88; /* keep price green and prominent */
+  font-weight: 700;
+}
+
 .menu-card img {
   width: 100%;
   border-radius: 0.5rem;
