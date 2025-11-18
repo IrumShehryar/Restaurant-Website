@@ -38,9 +38,14 @@ export function createModal() {
 		// backdrop color (semi-transparent) so modal stands out; change in CSS if desired
 		root.style.background = 'rgba(0,0,0,0.45)'
 		root.style.zIndex = '9999'
+		// center modal box with flex and add padding around the viewport
+		root.style.display = 'none'
+		root.style.alignItems = 'center'
+		root.style.justifyContent = 'center'
+		root.style.padding = '1.25rem'
 
 		root.innerHTML = `
-			<div id="modal-box" style="margin:4% auto;max-width:900px;background:var(--modal-bg,#ffff);padding:12px;">
+			<div id="modal-box" style="max-width:56.25rem; width:100%; max-height:calc(100vh - 2.5rem); background:var(--modal-bg,#fff); padding:0.75rem; overflow:auto; box-shadow:0 0.625rem 1.875rem rgba(0,0,0,0.5); border-radius:0.375rem;">
 				<div id="modal-content"></div>
 			</div>
 		`
