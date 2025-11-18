@@ -405,3 +405,10 @@ footer {
      .menu-detail { grid-template-columns: 1fr; }
      .menu-detail__img img { max-height: 25vh; }
 }
+
+/* Emphasize metadata (dietary / allergens) so they're easier to scan */
+.menu-detail__meta {
+     font-weight: 700;
+     color: var(--modal-text);
+     margin-top: 0.25rem;
+}
