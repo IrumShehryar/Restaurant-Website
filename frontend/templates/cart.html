@@ -32,7 +32,7 @@ endblock %} {% block content %}
             style="
                 text-align: right;
                 padding: 2rem;
-                border-top: 1px solid rgba(0, 255, 136, 0.3);
+                border-top: 0.0625rem solid rgba(0, 255, 136, 0.3);
             "
         >
             <p style="font-size: 1.2rem; color: #a8d8ff; margin-bottom: 1rem">
@@ -95,10 +95,10 @@ endblock %} {% block content %}
                 totalPrice += itemTotal;
 
                 cartHTML += `
-          <div style="background: rgba(20, 20, 35, 0.8); border: 1px solid rgba(0, 255, 136, 0.3); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; display: flex; gap: 1.5rem;">
-            <img src="${item.image_url}" alt="${
+                    <div style="background: rgba(20, 20, 35, 0.8); border: 0.0625rem solid rgba(0, 255, 136, 0.3); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; display: flex; gap: 1.5rem;">
+                        <img src="${item.image_url}" alt="${
                     item.name
-                }" style="width: 120px; height: 120px; object-fit: cover; border-radius: 8px;">
+                }" style="width: 7.5rem; height: 7.5rem; object-fit: cover; border-radius: 0.5rem;">
             <div style="flex: 1;">
               <h3 style="color: #00ff88; margin-bottom: 0.5rem;">${
                   item.name
@@ -110,15 +110,15 @@ endblock %} {% block content %}
                   2
               )}</span></p>
               <div style="display: flex; gap: 1rem; align-items: center;">
-                <label style="color: #a8d8ff;">Qty: 
-                  <input type="number" value="${
-                      item.quantity || 1
-                  }" min="1" style="width: 50px; padding: 0.25rem; border-radius: 4px; border: 1px solid #00ff88; background: #0b0b0b; color: #00ff88;" onchange="updateQuantity(${index}, this.value)">
-                </label>
+                                <label style="color: #a8d8ff;">Qty: 
+                                    <input type="number" value="${
+                                        item.quantity || 1
+                                    }" min="1" style="width: 3.125rem; padding: 0.25rem; border-radius: 0.25rem; border: 0.0625rem solid #00ff88; background: #0b0b0b; color: #00ff88;" onchange="updateQuantity(${index}, this.value)">
+                                </label>
                 <span style="color: #00ff88; font-weight: bold; margin-left: auto;">Subtotal: €${itemTotal.toFixed(
                     2
                 )}</span>
-                <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: bold;">Remove</button>
+                <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-weight: bold;">Remove</button>
               </div>
             </div>
           </div>
