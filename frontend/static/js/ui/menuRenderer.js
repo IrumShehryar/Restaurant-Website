@@ -29,12 +29,14 @@ console.log('renderItemDetail resolved imgSrc ->', imgSrc);
 	return `
 <div class="menu-detail">
 	<h2>${item.name}</h2>
-	<p>${item.description}</p>
-	<p>${img}</p>
-	<p>Diet: ${dietary}</p>
-	<p>Allergens: ${allergens}</p>
-	<p><strong>${item.price}€</strong></p>
-	<button id="modal-close">Close</button>
+	<div class="menu-detail__body">
+		<p class="menu-detail__desc">${item.description}</p>
+		<p class="menu-detail__meta">Diet: ${dietary}</p>
+		<p class="menu-detail__meta">Allergens: ${allergens}</p>
+		<p class="menu-detail__price"><strong>${item.price}€</strong></p>
+		<button id="modal-close">Close</button>
+	</div>
+	<div class="menu-detail__img">${img}</div>
 </div>
 `
 }
