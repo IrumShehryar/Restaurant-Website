@@ -11,7 +11,8 @@
 export function renderItemDetail(item) {
 	// Return minimal, well-formed HTML for the modal content.
 	// Keep it simple — styling can be added later.
-	const allergens = Array.isArray(item.allergens) ? item.allergens.join(', ') : ''
+	// allergens and dietary may be arrays or single values; normalise to arrays
+	const allergensArr = Array.isArray(item.allergens) ? item.allergens : (item.allergens ? [item.allergens] : []);
 	// dietary may be array or single string; render as badges below
 	const dietaryArr = Array.isArray(item.dietary) ? item.dietary : (item.dietary ? [item.dietary] : []);
 	// resolve image source: keep absolute/full URLs, otherwise prefix the assets folder
@@ -46,6 +47,13 @@ export function renderItemDetail(item) {
 	} else {
 		dietaryHTML = 'None';
 	}
+	// Render allergens as badges (or 'None')
+	let allergensHTML = '';
+	if (allergensArr && allergensArr.length) {
+		allergensHTML = allergensArr.map(a => `<span class="tag tag--allergens">${a}</span>`).join(' ');
+	} else {
+		allergensHTML = 'None';
+	}
 	const price = (item.price !== undefined && item.price !== null) ? Number(item.price).toFixed(2) : '';
 	return `
 <div class="menu-detail">
@@ -53,7 +61,7 @@ export function renderItemDetail(item) {
 		<h2>${item.name}</h2>
 		<p class="menu-detail__desc">${item.description}</p>
 		<p class="menu-detail__meta menu-detail__meta--dietary" aria-label="Suitable for">Suitable for: ${dietaryHTML}</p>
-		<p class="menu-detail__meta menu-detail__meta--allergens">Allergens: ${allergens || 'None'}</p>
+		<p class="menu-detail__meta menu-detail__meta--allergens" aria-label="Allergens">Allergens: ${allergensHTML}</p>
 		${ingredientsHTML}
 		<p class="menu-detail__price"><strong><span class="menu-detail__price-label">Price:</span> <span class="menu-detail__price-amount">${price}€</span></strong></p>
 		<button id="modal-close">Close</button>

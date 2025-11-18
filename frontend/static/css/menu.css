@@ -87,14 +87,7 @@
 }
 
 /* Dietary / allergen color variants */
-.menu-detail__meta--dietary {
-  color: #ffd166; /* warm accent for dietary tags (e.g., vegetarian, vegan) */
-  font-weight: 700;
-}
-.menu-detail__meta--allergens {
-  color: #ff6b6b; /* caution color for allergens */
-  font-weight: 800;
-}
+/* (moved to main.css) */
 
 /* Ingredients list styling */
 .menu-detail__ingredients {
@@ -138,9 +131,4 @@
   margin-right: 0.35rem;
   margin-top: 0.25rem;
 }
-.tag--dietary {
-  background: rgba(0, 255, 136, 0.12);
-  color: #00ff88;
-  border: 1px solid rgba(0,255,136,0.15);
-  font-weight: 700;
-}
+/* tag modifiers moved to main.css */
