@@ -20,8 +20,10 @@ class MenuItem(Document):
     price = FloatField()
     category = StringField(required = True, choices = ["starter","main","dessert","side","drink","special"])
     image = StringField()
-    dietary = ListField(StringField(choices =["vegetarian","vegan","gluten-free","dairy-free"]))
+    dietary = ListField(StringField(choices =["vegetarian","vegan","gluten-free","dairy-free","pescatarian"]))
     allergens = ListField(StringField())
+    # Simple ingredients list (strings). Kept optional for backward compatibility.
+    ingredients = ListField(StringField())
     days_of_week = ListField(StringField())
     active = BooleanField()
     
@@ -294,6 +296,7 @@ def add_menu_item(item_data):
         image = item_data.get('image'),
         dietary = item_data.get('dietary',[]),
         allergens = item_data.get('allergens',[]),
+        ingredients = item_data.get('ingredients', []),
         days_of_week = item_data.get('days_of_week',[]),
         active = item_data.get('active',True)
         
