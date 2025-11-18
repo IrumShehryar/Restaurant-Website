@@ -85,3 +85,34 @@
     font-size: 1.125rem;
   }
 }
+
+/* Dietary / allergen color variants */
+.menu-detail__meta--dietary {
+  color: #ffd166; /* warm accent for dietary tags (e.g., vegetarian, vegan) */
+  font-weight: 700;
+}
+.menu-detail__meta--allergens {
+  color: #ff6b6b; /* caution color for allergens */
+  font-weight: 800;
+}
+
+/* Ingredients list styling */
+.menu-detail__ingredients {
+  margin-top: 0.75rem;
+  padding-left: 0.5rem;
+}
+.menu-detail__ingredients ul {
+  list-style: disc;
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+}
+.menu-detail__ingredients li {
+  margin-bottom: 0.5rem;
+  color: #dff7ea;
+  font-size: 0.95rem;
+}
+.menu-detail__ingredients li strong {
+  color: #ffffff;
+  font-weight: 700;
+  margin-right: 0.35rem;
+}
