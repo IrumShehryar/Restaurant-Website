@@ -11,6 +11,13 @@
   background-color: transparent;
 }
 
+/* Keep the menu grid centered and constrained so cards don't span full viewport */
+.menu-grid {
+  max-width: 68.75rem; /* 1100px */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
 .menu-card {
   border: 1px solid rgba(179,102,255,0.12);
   border-radius: 0.625rem;
@@ -19,6 +26,16 @@
   box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.45);
   transition: transform 0.2s ease;
   cursor: pointer;
+  position: relative;
+  overflow: visible;
+}
+
+/* Ensure images inside menu cards don't force overflow */
+.menu-card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.4rem;
 }
 
 .menu-card:hover {
@@ -41,54 +58,75 @@
   font-size: 1.05rem;
   margin-bottom: 0.35rem;
 }
-.menu-card__meta {
-  color: #9fb0b2; /* muted meta color for category/price line */
-  font-size: 0.9rem;
-}
-.menu-card__price {
-  color: #00ff88; /* keep price green and prominent */
-  font-weight: 700;
-}
 
-.menu-card img {
-  width: 100%;
+/* Highlight of the Day styling */
+.highlight-card {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  padding: 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
   border-radius: 0.5rem;
-  margin-bottom: 0.625rem;
-  object-fit: cover;
-  height: 11.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.05);
+  margin-bottom: 1.25rem;
 }
 
-/* Modal detail layout for menu items — kept in menu.css because it's menu-specific */
+/* If createMenuCard output has an img inside the card */
+.highlight-card img {
+  width: 12rem;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.4rem;
+}
+
+/* Make title stand out if using .menu-card__title */
+.highlight-card .menu-card__title {
+  color: #b45309; /* amber tone */
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Price and meta slightly larger */
+.highlight-card .menu-card__meta,
+.highlight-card .menu-card__price {
+  font-size: 0.95rem;
+  color: #065f46; /* green tint for price */
+}
+
+@media (max-width: 40rem) {
+  .highlight-card { flex-direction: column; align-items: flex-start; }
+  .highlight-card img { width: 100%; height: auto; }
+}
+
+/* Modal content: keep text and image side-by-side on wide screens,
+   stack on small screens. Limit image size to avoid huge modal boxes. */
+#modal-content {
+  /* keep as a simple wrapper in case other content is added */
+  display: block;
+}
+
+/* The renderer outputs a .menu-detail block with two children: .menu-detail__body and .menu-detail__img
+   Make that element a two-column grid so text sits beside the image regardless of insertion order. */
 .menu-detail {
   display: grid;
-  grid-template-columns: 1fr 40%;
+  grid-template-columns: 1fr 20rem; /* text | image column */
   gap: 1rem;
   align-items: start;
 }
-.menu-detail__body {
-  padding-right: 0.25rem;
-}
+
 .menu-detail__img img {
   width: 100%;
-  max-height: 40vh; /* limit image height so details remain visible */
+  height: auto;
+  max-height: 30rem; /* prevent extremely tall images */
   object-fit: cover;
   display: block;
-  border-radius: 0.5rem;
+  border-radius: 0.375rem;
 }
+
 @media (max-width: 48rem) {
   .menu-detail { grid-template-columns: 1fr; }
-  .menu-detail__img img { max-height: 25vh; }
+  .menu-detail__img img { max-height: 18rem; }
 }
-
-/* Emphasize metadata (dietary / allergens) so they're easier to scan */
-.menu-detail__meta {
-  font-weight: 700;
-  color: var(--modal-text);
-  margin-top: 0.25rem;
-}
-
-/* Typography adjustments requested: add spacing and larger colored headings */
-.menu-card,
 .menu-detail__body {
   line-height: 1.6; /* add spacing between lines for readability */
 }
@@ -157,3 +195,135 @@
   margin-top: 0.25rem;
 }
 /* tag modifiers moved to main.css */
+
+/* Highlight of the Day styling */
+
+/* Wrapper with heading for highlight(s) */
+.highlight-wrapper {
+  max-width: 68.75rem; /* 1100px */
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
+.highlight-heading {
+  font-size: 1.25rem;
+  margin: 0 0 0.5rem 0;
+  color: #e9d5ff; /* light purple heading */
+}
+
+
+/* Highlight grid: three columns (main + dessert + drink) */
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(10rem, 1fr));
+  gap: 1rem;
+  max-width: 68.75rem; /* 1100px */
+  margin: 0 auto;
+}
+
+.highlight-item {
+  background: linear-gradient(180deg, rgba(99,102,241,0.04), rgba(99,102,241,0.01));
+  border: 0.0625rem solid rgba(99,102,241,0.10);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.highlight-thumb {
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+  border-radius: 0.4rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.placeholder-thumb {
+  width: 100%;
+  height: 9rem;
+  border-radius: 0.4rem;
+  border: 0.0625rem dashed rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.01);
+  margin-bottom: 0.5rem;
+}
+
+/* Styling to make highlight cards compact and image-focused */
+.highlight-item .menu-card {
+  padding: 0.25rem;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.highlight-item .menu-card__image {
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+  border-radius: 0.4rem;
+  display: block;
+}
+
+.highlight-item .menu-info {
+  display: none; /* hide meta (title/meta) in highlight thumbnails */
+}
+
+/* show actions for the main highlight only */
+.highlight-item:not(.highlight-main) .menu-actions {
+  display: none;
+}
+.highlight-item.highlight-main .menu-actions {
+  display: block;
+}
+
+/* Highlight-specific action button outline to make them very visible */
+.highlight-actions .btn-detail,
+.highlight-actions .btn-add {
+  outline: 0.1875rem solid rgba(255,255,255,0.12);
+  box-shadow: 0 0 0 0.1875rem rgba(0, 255, 136, 0.12) inset;
+}
+
+.highlight-actions .btn-add {
+  background: var(--modal-accent);
+  color: #0b0b0b;
+  border-color: rgba(0,255,136,0.25);
+}
+
+.highlight-body { padding: 0 0.25rem; }
+.highlight-title {
+  display: block;
+  color: #ffd166; /* prominent title color */
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+.highlight-desc {
+  color: #dfe7ea;
+  margin-bottom: 0.45rem;
+  font-size: 0.95rem;
+}
+.highlight-meta {
+  color: #c7f9dd;
+  font-weight: 700;
+}
+
+/* Force action buttons to be visible above other layers (safety) */
+.menu-actions .btn-detail,
+.menu-actions .btn-add {
+  position: relative !important;
+  z-index: 9999 !important;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+/* Responsive: stack highlight card on narrow screens */
+@media (max-width: 40rem) {
+  .highlight-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .highlight-card img {
+    width: 100%;
+    height: auto;
+  }
+}
