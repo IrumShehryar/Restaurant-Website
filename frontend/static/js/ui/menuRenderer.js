@@ -24,8 +24,20 @@ export function renderItemDetail(item) {
 	const img = imgSrc
 		? `<img src="${imgSrc}" alt="${item.name}" onerror="this.onerror=null;this.src='/static/assets/hero-image.jpeg'" />`
 		: ''
-console.log('renderItemDetail item.image ->', item.image);
-console.log('renderItemDetail resolved imgSrc ->', imgSrc);
+
+	// Ingredients: support either an array of strings or array of objects {name, description}
+	let ingredientsHTML = '';
+	if (Array.isArray(item.ingredients) && item.ingredients.length) {
+		const listItems = item.ingredients.map(ing => {
+			if (!ing) return '';
+			if (typeof ing === 'string') return `<li>${ing}</li>`;
+			// assume object with name and optional description
+			const name = ing.name || '';
+			const desc = ing.description ? `: ${ing.description}` : '';
+			return `<li><strong>${name}</strong>${desc}</li>`;
+		}).join('');
+		ingredientsHTML = `\n\t\t<div class="menu-detail__ingredients">\n\t\t\t<h4>Ingredients</h4>\n\t\t\t<ul>${listItems}</ul>\n\t\t</div>`;
+	}
 	return `
 <div class="menu-detail">
 	<h2>${item.name}</h2>
