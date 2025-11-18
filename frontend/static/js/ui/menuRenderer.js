@@ -12,7 +12,8 @@ export function renderItemDetail(item) {
 	// Return minimal, well-formed HTML for the modal content.
 	// Keep it simple — styling can be added later.
 	const allergens = Array.isArray(item.allergens) ? item.allergens.join(', ') : ''
-	const dietary = Array.isArray(item.dietary) ? item.dietary.join(', ') : (item.dietary || '')
+	// dietary may be array or single string; render as badges below
+	const dietaryArr = Array.isArray(item.dietary) ? item.dietary : (item.dietary ? [item.dietary] : []);
 	// resolve image source: keep absolute/full URLs, otherwise prefix the assets folder
 	// encode filenames so spaces, apostrophes, etc. won't break the URL
 	const imgSrc = item.image
@@ -38,13 +39,20 @@ export function renderItemDetail(item) {
 		}).join('');
 		ingredientsHTML = `\n\t\t<div class="menu-detail__ingredients">\n\t\t\t<h4>Ingredients</h4>\n\t\t\t<ul>${listItems}</ul>\n\t\t</div>`;
 	}
+	// Render dietary as badge spans (or 'None')
+	let dietaryHTML = '';
+	if (dietaryArr && dietaryArr.length) {
+		dietaryHTML = dietaryArr.map(d => `<span class="tag tag--dietary">${d}</span>`).join(' ');
+	} else {
+		dietaryHTML = 'None';
+	}
 	const price = (item.price !== undefined && item.price !== null) ? Number(item.price).toFixed(2) : '';
 	return `
 <div class="menu-detail">
 	<div class="menu-detail__body">
 		<h2>${item.name}</h2>
 		<p class="menu-detail__desc">${item.description}</p>
-		<p class="menu-detail__meta menu-detail__meta--dietary">Diet: ${dietary || 'None'}</p>
+		<p class="menu-detail__meta menu-detail__meta--dietary" aria-label="Suitable for">Suitable for: ${dietaryHTML}</p>
 		<p class="menu-detail__meta menu-detail__meta--allergens">Allergens: ${allergens || 'None'}</p>
 		${ingredientsHTML}
 		<p class="menu-detail__price"><strong><span class="menu-detail__price-label">Price:</span> <span class="menu-detail__price-amount">${price}€</span></strong></p>
