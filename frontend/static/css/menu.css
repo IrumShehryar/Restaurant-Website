@@ -61,3 +61,27 @@
   color: var(--modal-text);
   margin-top: 0.25rem;
 }
+
+/* Typography adjustments requested: add spacing and larger colored headings */
+.menu-card,
+.menu-detail__body {
+  line-height: 1.6; /* add spacing between lines for readability */
+}
+
+.menu-card h3,
+.menu-detail__body h2,
+.menu-detail__body h3 {
+  color: #00ff88; /* brighter Northern-lights accent for headings */
+  font-size: 1.3rem; /* enlarge headings */
+  line-height: 1.25;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 48rem) {
+  .menu-card h3,
+  .menu-detail__body h2,
+  .menu-detail__body h3 {
+    font-size: 1.125rem;
+  }
+}
