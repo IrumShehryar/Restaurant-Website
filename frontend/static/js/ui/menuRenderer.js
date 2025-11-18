@@ -43,8 +43,9 @@ export function renderItemDetail(item) {
 	<h2>${item.name}</h2>
 	<div class="menu-detail__body">
 		<p class="menu-detail__desc">${item.description}</p>
-		<p class="menu-detail__meta">Diet: ${dietary}</p>
-		<p class="menu-detail__meta">Allergens: ${allergens}</p>
+		<p class="menu-detail__meta menu-detail__meta--dietary">Diet: ${dietary}</p>
+		<p class="menu-detail__meta menu-detail__meta--allergens">Allergens: ${allergens}</p>
+		${ingredientsHTML}
 		<p class="menu-detail__price"><strong>${item.price}€</strong></p>
 		<button id="modal-close">Close</button>
 	</div>
