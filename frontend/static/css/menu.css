@@ -32,3 +32,32 @@
   object-fit: cover;
   height: 11.25rem;
 }
+
+/* Modal detail layout for menu items — kept in menu.css because it's menu-specific */
+.menu-detail {
+  display: grid;
+  grid-template-columns: 1fr 40%;
+  gap: 1rem;
+  align-items: start;
+}
+.menu-detail__body {
+  padding-right: 0.25rem;
+}
+.menu-detail__img img {
+  width: 100%;
+  max-height: 40vh; /* limit image height so details remain visible */
+  object-fit: cover;
+  display: block;
+  border-radius: 0.5rem;
+}
+@media (max-width: 48rem) {
+  .menu-detail { grid-template-columns: 1fr; }
+  .menu-detail__img img { max-height: 25vh; }
+}
+
+/* Emphasize metadata (dietary / allergens) so they're easier to scan */
+.menu-detail__meta {
+  font-weight: 700;
+  color: var(--modal-text);
+  margin-top: 0.25rem;
+}
