@@ -116,3 +116,15 @@
   font-weight: 700;
   margin-right: 0.35rem;
 }
+
+/* Price label + amount styling */
+.menu-detail__price { margin-top: 0.75rem; }
+.menu-detail__price-label {
+  color: #a8d8ff;
+  font-weight: 600;
+  margin-right: 0.35rem;
+}
+.menu-detail__price-amount {
+  color: #ffffff;
+  font-weight: 800;
+}

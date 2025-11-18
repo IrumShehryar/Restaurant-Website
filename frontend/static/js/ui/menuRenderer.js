@@ -38,6 +38,7 @@ export function renderItemDetail(item) {
 		}).join('');
 		ingredientsHTML = `\n\t\t<div class="menu-detail__ingredients">\n\t\t\t<h4>Ingredients</h4>\n\t\t\t<ul>${listItems}</ul>\n\t\t</div>`;
 	}
+	const price = (item.price !== undefined && item.price !== null) ? Number(item.price).toFixed(2) : '';
 	return `
 <div class="menu-detail">
 	<div class="menu-detail__body">
@@ -46,7 +47,7 @@ export function renderItemDetail(item) {
 		<p class="menu-detail__meta menu-detail__meta--dietary">Diet: ${dietary || 'None'}</p>
 		<p class="menu-detail__meta menu-detail__meta--allergens">Allergens: ${allergens || 'None'}</p>
 		${ingredientsHTML}
-		<p class="menu-detail__price"><strong>${item.price}€</strong></p>
+		<p class="menu-detail__price"><strong><span class="menu-detail__price-label">Price:</span> <span class="menu-detail__price-amount">${price}€</span></strong></p>
 		<button id="modal-close">Close</button>
 	</div>
 	<div class="menu-detail__img">${img}</div>
