@@ -16,16 +16,17 @@ POST http://localhost:5000/api/v1/menu
 Content-Type: application/json
 
 {
-  "name": "fries",
-  "description": "side",
-  "price": 9.99,
+  "name": "Aurora Bites",
+  "description": "Crispy potato bites tossed in northern spice, served with cool dill sauce.",
+  "price": 5.50,
   "category": "starter",
-  "image": "url",
-  "dietary": [],
-  "allergens": [],
-  "days_of_week": ["Monday"],
+  "image": "/statics/assets/Aurora-Bites.jpg",
+  "dietary": ["vegetarian"],
+  "allergens": ["milk"],
+  "days_of_week": ["Monday","Tuesday","wednesday","Thursday","Friday","saturday","Sunday"],
   "active": true
 }
+
 ###update an item
 PUT http://localhost:5000/api/v1/menu/691362e8db9472e4003f4590
 Content-Type: application/json
