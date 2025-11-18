@@ -1,5 +1,10 @@
 {% extends "base.html" %} {% block title %}Cart — Revontulet Flamehouse{%
-endblock %} {% block content %}
+endblock %} {% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/cart.css') }}"
+/>
+{% endblock %} {% block content %}
 <section class="cart-section">
     <div class="cart-header">
         <h2>Your Cart</h2>
@@ -9,65 +14,18 @@ endblock %} {% block content %}
         <!-- Cart items will be dynamically inserted here -->
     </div>
 
-    <div
-        id="cart-empty"
-        class="cart-empty"
-        style="display: none; text-align: center; padding: 3rem"
-    >
-        <p style="color: #a8d8ff; font-size: 1.2rem">Your cart is empty</p>
-        <a
-            href="{{ url_for('menu') }}"
-            style="
-                color: #00ff88;
-                text-decoration: none;
-                margin-top: 1rem;
-                display: inline-block;
-            "
-            >← Back to Menu</a
-        >
+    <div id="cart-empty" class="cart-empty">
+        <p>Your cart is empty</p>
+        <a href="{{ url_for('menu') }}">← Back to Menu</a>
     </div>
 
-    <div id="cart-summary" class="cart-summary" style="display: none">
-        <div
-            style="
-                text-align: right;
-                padding: 2rem;
-                border-top: 0.0625rem solid rgba(0, 255, 136, 0.3);
-            "
-        >
-                <p style="font-size: 1.2rem; color: #a8d8ff; margin-bottom: 1rem">
-                Total:
-                <span id="total-price" style="color: #00ff88; font-weight: bold"
-                    >€0.00</span
-                >
-            <a
-            href="{{ url_for('menu') }}"
-            style="
-                color: #00ff88;
-                text-decoration: none;
-                margin-top: 1rem;
-                display: inline-block;
-            "
-            >← Back to Menu</a
-        >
-                    cursor: pointer;
-                    font-size: 1rem;
-                    margin-right: 1rem;
-                "
-            >
-                Proceed to Checkout
-            </button>
-            <a
-                href="{{ url_for('menu') }}"
-                style="
-                    color: #00ff88;
-                    text-decoration: none;
-                    padding: 0.75rem 2rem;
-                    border: 1px solid #00ff88;
-                    border-radius: 0.5rem;
-                    display: inline-block;
-                    font-weight: bold;
-                "
+    <div id="cart-summary" class="cart-summary">
+        <div class="summary-inner">
+            <p class="summary-total">
+                Total: <span id="total-price">€0.00</span>
+            </p>
+            <button class="btn btn-checkout">Proceed to Checkout</button>
+            <a href="{{ url_for('menu') }}" class="btn btn-continue"
                 >Continue Shopping</a
             >
         </div>
@@ -95,34 +53,30 @@ endblock %} {% block content %}
                 totalPrice += itemTotal;
 
                 cartHTML += `
-                      <div style="background: rgba(20, 20, 35, 0.8); border: 0.0625rem solid rgba(0, 255, 136, 0.3); border-radius: 0.75rem; padding: 1.5rem; margin-bottom: 1rem; display: flex; gap: 1.5rem;">
+                    <div class="cart-item">
                         <img src="${item.image_url}" alt="${
                     item.name
-                }" style="width: 7.5rem; height: 7.5rem; object-fit: cover; border-radius: 0.5rem;">
-            <div style="flex: 1;">
-              <h3 style="color: #00ff88; margin-bottom: 0.5rem;">${
-                  item.name
-              }</h3>
-              <p style="color: #a8d8ff; margin-bottom: 0.5rem;">${
-                  item.description
-              }</p>
-              <p style="color: #b8eaff; margin-bottom: 1rem;">Price: <span style="color: #00ff88; font-weight: bold;">€${item.price.toFixed(
-                  2
-              )}</span></p>
-              <div style="display: flex; gap: 1rem; align-items: center;">
-                                <label style="color: #a8d8ff;">Qty: 
+                }" class="cart-item__img">
+                        <div class="cart-item__details">
+                            <h3 class="cart-item__title">${item.name}</h3>
+                            <p class="cart-item__desc">${item.description}</p>
+                            <p class="cart-item__price">Price: <span class="amount">€${item.price.toFixed(
+                                2
+                            )}</span></p>
+                            <div class="cart-item__controls">
+                                <label class="cart-item__label">Qty:
                                     <input type="number" value="${
                                         item.quantity || 1
-                                    }" min="1" style="width: 3.125rem; padding: 0.25rem; border-radius: 0.25rem; border: 0.0625rem solid #00ff88; background: #0b0b0b; color: #00ff88;" onchange="updateQuantity(${index}, this.value)">
+                                    }" min="1" class="cart-item__input" onchange="updateQuantity(${index}, this.value)">
                                 </label>
-                <span style="color: #00ff88; font-weight: bold; margin-left: auto;">Subtotal: €${itemTotal.toFixed(
-                    2
-                )}</span>
-                <button onclick="removeFromCart(${index})" style="background: #ff6b6b; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; font-weight: bold;">Remove</button>
-              </div>
-            </div>
-          </div>
-        `;
+                                <span class="cart-item__subtotal">Subtotal: €${itemTotal.toFixed(
+                                    2
+                                )}</span>
+                                <button onclick="removeFromCart(${index})" class="cart-item__remove">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
             });
 
             cartItemsDiv.innerHTML = cartHTML;
