@@ -12,17 +12,24 @@
 }
 
 .menu-card {
-  border: 1px solid rgba(0, 255, 136, 0.3);
+  border: 1px solid rgba(179,102,255,0.12);
   border-radius: 0.625rem;
   padding: 1rem;
-  background-color: rgba(20, 20, 35, 0.8);
-  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.3);
+  background-color: rgba(12, 12, 22, 0.88);
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.45);
   transition: transform 0.2s ease;
   cursor: pointer;
 }
 
 .menu-card:hover {
   transform: scale(1.02);
+  background-color: rgba(18, 12, 40, 0.92);
+  border-color: rgba(179,102,255,0.28);
+}
+
+/* Title color inside menu cards */
+.menu-card h3, .menu-card h2 {
+  color: #b366ff; /* purple accent to match site headings */
 }
 
 .menu-card img {
