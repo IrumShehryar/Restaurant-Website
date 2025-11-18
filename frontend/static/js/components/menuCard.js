@@ -24,13 +24,22 @@ export function createMenuCard(item) {
   
   el.dataset.id = item.id;
 
+  // resolve image source similar to menuRenderer: prefer image_url, then image filename, then fallback
+  const imgSrc = item.image_url
+    ? item.image_url
+    : (item.image
+      ? (item.image.startsWith('/') || item.image.startsWith('http')
+        ? item.image
+        : `/static/assets/${encodeURIComponent(item.image)}`)
+      : '/static/assets/hero-image.jpeg');
+
   // Insert the card's inner structure.
   // NOTE: innerHTML is convenient, but if item fields may contain untrusted content,
   // prefer creating nodes and setting textContent to avoid injection.
   el.innerHTML = `
     <img
       class="menu-card__image"
-      src="${item.image_url || '/static/assets/hero-image.jpeg'}"
+      src="${imgSrc}"
       alt="${item.name}"
     >
     <div class="menu-info">

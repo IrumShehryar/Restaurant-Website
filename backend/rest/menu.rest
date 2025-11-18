@@ -20,7 +20,7 @@ Content-Type: application/json
   "description": "Crispy potato bites tossed in northern spice, served with cool dill sauce.",
   "price": 5.50,
   "category": "starter",
-  "image": "/statics/assets/Aurora-Bites.jpg",
+  "image": "Aurora-Bites.jpg",
   "dietary": ["vegetarian"],
   "allergens": ["milk"],
   "days_of_week": ["Monday","Tuesday","wednesday","Thursday","Friday","saturday","Sunday"],

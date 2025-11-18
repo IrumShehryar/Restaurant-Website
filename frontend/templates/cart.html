@@ -52,9 +52,19 @@ endblock %} {% block styles %}
                 const itemTotal = item.price * (item.quantity || 1);
                 totalPrice += itemTotal;
 
+                // resolve image source: prefer image_url, then image filename, then fallback
+                const imgSrc = item.image_url
+                    ? item.image_url
+                    : item.image
+                    ? item.image.startsWith("/") ||
+                      item.image.startsWith("http")
+                        ? item.image
+                        : `/static/assets/${encodeURIComponent(item.image)}`
+                    : "/static/assets/hero-image.jpeg";
+
                 cartHTML += `
                     <div class="cart-item">
-                        <img src="${item.image_url}" alt="${
+                        <img src="${imgSrc}" onerror="this.onerror=null;this.src='/static/assets/hero-image.jpeg'" alt="${
                     item.name
                 }" class="cart-item__img">
                         <div class="cart-item__details">
