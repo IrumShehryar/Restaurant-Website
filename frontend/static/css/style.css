@@ -184,7 +184,7 @@ nav{
     align-items: center;
     justify-content: space-between;
     gap: 3rem;
-    max-width: 1200px;
+    max-width: 75rem;
     width: 100%;
     margin: 0 auto;
     position: relative;
@@ -194,7 +194,7 @@ nav{
 .hero-left {
     flex: 1;
     text-align: left;
-    max-width: 500px;
+    max-width: 31.25rem;
     padding-right: 2rem;
 }
 
@@ -248,17 +248,17 @@ nav{
     flex: 1;
     display: flex;
     align-items: right;
-    max-width: 500px;
+    max-width: 31.25rem;
     padding-left: 2rem;
 }
 
 .hero-image {
     width: 100%;
-    max-width: 500px;
+    max-width: 31.25rem;
     height: auto;
     object-fit: contain;
     border-radius: 8px;
-    width: 450px;
+    width: 28.125rem;
     border-radius: 20px;
     mask-image: radial-gradient(circle, black 60%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);
@@ -312,15 +312,15 @@ p { color: #e0f4ff; }
      padding: 1rem;
 }
 #modal-content{
-     padding: 18px;
+     padding: 1.125rem;
 }
-#modal-content img{max-width:100%;height:auto;display:block;margin:8px 0}
+#modal-content img{max-width:100%;height:auto;display:block;margin:0.5rem 0}
 #modal-content #modal-close{
-     display:inline-block;margin-top:12px;padding:6px 10px;border:none;background:var(--modal-accent);color:#0b0b0b;border-radius:4px;cursor:pointer
+     display:inline-block;margin-top:0.75rem;padding:0.375rem 0.625rem;border:none;background:var(--modal-accent);color:#0b0b0b;border-radius:0.25rem;cursor:pointer
 }
 
 /* small responsive tweaks */
-@media (max-width: 1024px){
+@media (max-width: 64rem){
      header {
           flex-wrap: wrap;
      }
@@ -339,7 +339,7 @@ p { color: #e0f4ff; }
      }
 }
 
-@media (max-width: 768px){
+@media (max-width: 48rem){
      header {
           flex-direction: column;
           gap: 1rem;
@@ -393,7 +393,7 @@ p { color: #e0f4ff; }
      }
 }
 
-@media (max-width: 480px){
+@media (max-width: 30rem){
      .logo img{ height: 3rem; }
      header {
           padding: 0.75rem;
@@ -462,9 +462,9 @@ p { color: #e0f4ff; }
      }
 }
 
-@media (min-width: 768px){
+@media (min-width: 48rem){
      #modal-root{align-items:center}
-     #modal-box{max-width:720px}
+     #modal-box{max-width:45rem}
 }
 
 /* ===== FOOTER STYLING STARTS HERE ===== */
@@ -482,9 +482,9 @@ footer {
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
   width: 100%;
 }
@@ -522,7 +522,7 @@ footer {
   align-self: flex-end;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .footer-content {
     grid-template-columns: 1fr;
   }
@@ -534,10 +534,10 @@ footer {
 
 /*.map-container {
   width: 100%;
-  height: 300px;
+  height: 18.75rem;
   margin: 1rem 0;
-  border: 2px solid #00ff88;
-  border-radius: 8px;
+  border: 0.125rem solid #00ff88;
+  border-radius: 0.5rem;
   overflow: hidden;
 }*/
 
@@ -595,21 +595,21 @@ footer {
 /* ===== MENU PAGE STYLES ===== */
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 20px;
-  padding: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  padding: 0.75rem;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   background-color: transparent;
 }
 
 .menu-card {
   border: 1px solid rgba(0, 255, 136, 0.3);
-  border-radius: 10px;
-  padding: 16px;
+  border-radius: 0.625rem;
+  padding: 1rem;
   background-color: rgba(20, 20, 35, 0.8);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
   cursor: pointer;
 }
@@ -620,10 +620,10 @@ footer {
 
 .menu-card img {
   width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  border-radius: 0.5rem;
+  margin-bottom: 0.625rem;
   object-fit: cover;
-  height: 180px;
+  height: 11.25rem;
 }
 
 /* Modal basic styling (if not already defined) */
@@ -642,8 +642,8 @@ footer {
 
 .modal-content {
   background: #fff;
-  padding: 24px;
-  border-radius: 10px;
+  padding: 1.5rem;
+  border-radius: 0.625rem;
   max-width: 500px;
   width: 90%;
   position: relative;
@@ -651,9 +651,9 @@ footer {
 
 .modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: bold;
 }
