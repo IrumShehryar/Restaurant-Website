@@ -40,8 +40,8 @@ export function renderItemDetail(item) {
 	}
 	return `
 <div class="menu-detail">
-	<h2>${item.name}</h2>
 	<div class="menu-detail__body">
+		<h2>${item.name}</h2>
 		<p class="menu-detail__desc">${item.description}</p>
 		<p class="menu-detail__meta menu-detail__meta--dietary">Diet: ${dietary || 'None'}</p>
 		<p class="menu-detail__meta menu-detail__meta--allergens">Allergens: ${allergens || 'None'}</p>
