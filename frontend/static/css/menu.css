@@ -23,8 +23,10 @@
 
 .menu-card:hover {
   transform: scale(1.02);
-  background-color: rgba(18, 12, 40, 0.92);
-  border-color: rgba(179,102,255,0.28);
+  /* Softer hover: subtle lighten and gentler border tint */
+  background-color: rgba(22, 18, 34, 0.92);
+  border-color: rgba(179,102,255,0.14);
+  box-shadow: 0 0.375rem 0.9rem rgba(0, 0, 0, 0.5);
 }
 
 /* Title color inside menu cards */
