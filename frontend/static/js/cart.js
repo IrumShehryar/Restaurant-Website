@@ -38,11 +38,11 @@ function showCartButton() {
       background: #00ff88;
       color: #0b0b0b;
       padding: 1rem 1.5rem;
-      border-radius: 50px;
+      border-radius: 3.125rem;
       font-weight: bold;
       cursor: pointer;
       z-index: 999;
-      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+      box-shadow: 0 0.25rem 0.75rem rgba(0, 255, 136, 0.4);
       transition: all 0.3s ease;
     `;
 
@@ -52,12 +52,12 @@ function showCartButton() {
 
     cartBtn.addEventListener("mouseover", () => {
       cartBtn.style.transform = "scale(1.05)";
-      cartBtn.style.boxShadow = "0 6px 16px rgba(0, 255, 136, 0.6)";
+      cartBtn.style.boxShadow = "0 0.375rem 1rem rgba(0, 255, 136, 0.6)";
     });
 
     cartBtn.addEventListener("mouseout", () => {
       cartBtn.style.transform = "scale(1)";
-      cartBtn.style.boxShadow = "0 4px 12px rgba(0, 255, 136, 0.4)";
+      cartBtn.style.boxShadow = "0 0.25rem 0.75rem rgba(0, 255, 136, 0.4)";
     });
 
     document.body.appendChild(cartBtn);
@@ -80,15 +80,15 @@ function showNotification(message) {
     notification.id = "notification";
     notification.style.cssText = `
       position: fixed;
-      top: 100px;
+      top: 6.25rem;
       right: 2rem;
       background: #00ff88;
       color: #0b0b0b;
       padding: 1rem 1.5rem;
-      border-radius: 8px;
+      border-radius: 0.5rem;
       font-weight: bold;
       z-index: 1000;
-      box-shadow: 0 4px 12px rgba(0, 255, 136, 0.4);
+      box-shadow: 0 0.25rem 0.75rem rgba(0, 255, 136, 0.4);
       animation: slideIn 0.3s ease;
     `;
     document.body.appendChild(notification);
@@ -107,7 +107,7 @@ function showNotification(message) {
   const style = document.createElement("style");
   style.textContent = `
     @keyframes slideIn {
-      from { transform: translateX(400px); opacity: 0; }
+      from { transform: translateX(25rem); opacity: 0; }
       to   { transform: translateX(0); opacity: 1; }
     }
   `;

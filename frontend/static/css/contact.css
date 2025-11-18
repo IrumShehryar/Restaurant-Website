@@ -43,7 +43,7 @@
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
+    border-bottom: 0.125rem solid transparent;
 }
 
 .transport-options a:hover {

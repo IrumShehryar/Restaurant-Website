@@ -51,7 +51,7 @@
 .hero-tagline {
     color: #7de3ff;
     font-size: 0.95rem;
-    letter-spacing: 2px;
+     letter-spacing: 0.125rem;
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
@@ -106,9 +106,9 @@
     max-width: 31.25rem;
     height: auto;
     object-fit: contain;
-    border-radius: 8px;
-    width: 28.125rem;
-    border-radius: 20px;
+     border-radius: 0.5rem;
+     width: 28.125rem;
+     border-radius: 1.25rem;
     mask-image: radial-gradient(circle, black 60%, transparent 100%);
     -webkit-mask-image: radial-gradient(circle, black 60%, transparent 100%);
 }
