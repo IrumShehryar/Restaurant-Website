@@ -1,5 +1,17 @@
 {% extends "base.html" %} {% block title %}Menu — Revontulet Flamehouse{%
-endblock %} {% block content %}
+endblock %} {% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/menu.css') }}"
+/>
+{% endblock %} {% block content %}
+<!-- Highlight of the Day -->
+<section
+    id="highlight-root"
+    class="page-highlight"
+    aria-live="polite"
+    aria-label="Highlight of the day"
+></section>
 <h2>Menu</h2>
 <div id="menuList" class="menu-grid"></div>
 {% endblock %} {% block scripts %}
@@ -7,4 +19,4 @@ endblock %} {% block content %}
     type="module"
     src="{{ url_for('static', filename='js/menu.js') }}"
 ></script>
-{% endblock %}
+{% endblock %}
