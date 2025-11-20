@@ -24,13 +24,22 @@ export function createMenuCard(item) {
   
   el.dataset.id = item.id;
 
+  // resolve image source similar to menuRenderer: prefer image_url, then image filename, then fallback
+  const imgSrc = item.image_url
+    ? item.image_url
+    : (item.image
+      ? (item.image.startsWith('/') || item.image.startsWith('http')
+        ? item.image
+        : `/static/assets/${encodeURIComponent(item.image)}`)
+      : '/static/assets/hero-image.jpeg');
+
   // Insert the card's inner structure.
   // NOTE: innerHTML is convenient, but if item fields may contain untrusted content,
   // prefer creating nodes and setting textContent to avoid injection.
   el.innerHTML = `
     <img
       class="menu-card__image"
-      src="${item.image_url || '/static/assets/hero-image.jpeg'}"
+      src="${imgSrc}"
       alt="${item.name}"
     >
     <div class="menu-info">
@@ -69,9 +78,17 @@ export function createMenuCard(item) {
       // so a single parent listener can handle all cards (event delegation).
       // detail carries the payload the controller needs (the item id).
       el.dispatchEvent(new CustomEvent('show-detail', {
-        bubbles: true,
-        detail: { id: item.id },
-      }));
+          bubbles: true,
+          detail: { id: item.id || item._id },
+        }));
+      // Fallback: also dispatch on document in case the event doesn't bubble to the controller
+      try {
+        document.dispatchEvent(new CustomEvent('show-detail', {
+          detail: { id: item.id || item._id },
+        }));
+      } catch (err) {
+        // ignore in environments where document may be unavailable
+      }
     });
   }
 
@@ -85,7 +102,6 @@ export function createMenuCard(item) {
       e.stopPropagation();
       addToCart(item)
       
-    console.log("Add button clicked for:", item);
     })
   }
 

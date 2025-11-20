@@ -59,7 +59,7 @@ endblock %} {% block styles %}
                     ? item.image.startsWith("/") ||
                       item.image.startsWith("http")
                         ? item.image
-                        : /static/assets/${encodeURIComponent(item.image)}
+                        : `/static/assets/${encodeURIComponent(item.image)}`
                     : "/static/assets/hero-image.jpeg";
 
                 cartHTML += `

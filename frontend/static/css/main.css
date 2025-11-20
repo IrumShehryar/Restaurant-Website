@@ -385,7 +385,7 @@ footer {
 }
 
 /* Modal styling (generic modal shell remains in this file).
-   Menu-specific modal detail layout moved to menu.css for modularity. */
+   Menu-specific modal detail layout moved to `menu.css` for modularity. */
 
 /* Dietary & allergen modifier classes and tag styles (used by modals across the site) */
 .menu-detail__meta--dietary {
