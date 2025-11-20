@@ -55,13 +55,13 @@ export function createMenuCard(item) {
            aria-label gives a more specific accessible name for screen readers,
            e.g., "Show details for Margherita Pizza". -->
       <button
-        class="btn-detail"
+        class="btn btn-secondary btn-detail"
         aria-label="Show details for ${item.name}">
         Details
       </button>
 
-      <!-- "Add" button. We also put the id here for quick access via dataset. -->
-      <button class="btn-add" data-id="${item.id|| item._id}">Add</button>
+      <!-- "Add to cart" button. We also put the id here for quick access via dataset. -->
+      <button class="btn btn-accent btn-add" data-id="${item.id|| item._id}">Add to cart</button>
     </div>
   `;
 
