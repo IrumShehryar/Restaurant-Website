@@ -51,7 +51,7 @@ Restaurant-Website/
 │  ├─ templates/
 │  │  └─ index.html         # HTML template
 │  └─ static/
-│     ├─ css/style.css      # Styling
+	│     ├─ css/main.css      # Styling
 │     ├─ js/main.js         # JavaScript logic
 │     └─ assets/
 │        └─ revontulet_logo.png

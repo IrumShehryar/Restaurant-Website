@@ -39,7 +39,7 @@ Write-Host "[OK] Videos copied"
 
 # Fix CSS paths for GitHub Pages (docs folder context)
 Write-Host "Fixing CSS paths for GitHub Pages..." -ForegroundColor Yellow
-$cssFile = "docs/css/style.css"
+$cssFile = "docs/css/main.css"
 if (Test-Path $cssFile) {
     $content = Get-Content $cssFile -Raw
     
@@ -48,7 +48,8 @@ if (Test-Path $cssFile) {
     
     Set-Content $cssFile $content -Force
     Write-Host "[OK] CSS paths fixed"
-} else {
+}
+else {
     Write-Host "[WARNING] CSS file not found at $cssFile"
 }
 

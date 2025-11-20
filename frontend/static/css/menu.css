@@ -105,7 +105,7 @@
   display: block;
 }
 
-/* The renderer outputs a .menu-detail block with two children: .menu-detail_body and .menu-detail_img
+/* The renderer outputs a .menu-detail block with two children: .menu-detail__body and .menu-detail__img
    Make that element a two-column grid so text sits beside the image regardless of insertion order. */
 .menu-detail {
   display: grid;

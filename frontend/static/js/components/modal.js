@@ -37,10 +37,16 @@ export function createModal() {
 		root.style.display = 'none'
 		// backdrop color (semi-transparent) so modal stands out; change in CSS if desired
 		root.style.background = 'rgba(0,0,0,0.45)'
-		root.style.zIndex = '9999'
+		// ensure modal overlays other UI (buttons use high z-index too)
+		root.style.zIndex = '10050'
+		// center modal box with flex and add padding around the viewport
+		root.style.display = 'none'
+		root.style.alignItems = 'center'
+		root.style.justifyContent = 'center'
+		root.style.padding = '1.25rem'
 
 		root.innerHTML = `
-			<div id="modal-box" style="margin:4% auto;max-width:900px;background:var(--modal-bg,#ffff);padding:12px;">
+			<div id="modal-box" style="max-width:56.25rem; width: min(100%, 56.25rem); box-sizing: border-box; max-height:calc(100vh - 2.5rem); background:var(--modal-bg,#fff); padding:0.75rem; overflow:auto; box-shadow:0 0.625rem 1.875rem rgba(0,0,0,0.5); border-radius:0.375rem;">
 				<div id="modal-content"></div>
 			</div>
 		`
@@ -81,7 +87,8 @@ export function createModal() {
 	/** Show the modal. */
 	function open() {
 		const r = ensure()
-		r.style.display = 'block'
+		// use flex to allow centering via alignItems/justifyContent
+		r.style.display = 'flex'
 	}
 
 	/** Hide the modal and call the optional onClose callback. */
