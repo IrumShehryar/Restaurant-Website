@@ -5,6 +5,13 @@ endblock %} {% block styles %}
     href="{{ url_for('static', filename='css/menu.css') }}"
 />
 {% endblock %} {% block content %}
+<!-- Highlight of the Day -->
+<section
+    id="highlight-root"
+    class="page-highlight"
+    aria-live="polite"
+    aria-label="Highlight of the day"
+></section>
 <h2>Menu</h2>
 <div id="menuList" class="menu-grid"></div>
 {% endblock %} {% block scripts %}

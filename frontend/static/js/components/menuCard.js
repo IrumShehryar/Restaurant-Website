@@ -78,9 +78,17 @@ export function createMenuCard(item) {
       // so a single parent listener can handle all cards (event delegation).
       // detail carries the payload the controller needs (the item id).
       el.dispatchEvent(new CustomEvent('show-detail', {
-        bubbles: true,
-        detail: { id: item.id },
-      }));
+          bubbles: true,
+          detail: { id: item.id || item._id },
+        }));
+      // Fallback: also dispatch on document in case the event doesn't bubble to the controller
+      try {
+        document.dispatchEvent(new CustomEvent('show-detail', {
+          detail: { id: item.id || item._id },
+        }));
+      } catch (err) {
+        // ignore in environments where document may be unavailable
+      }
     });
   }
 
@@ -94,7 +102,6 @@ export function createMenuCard(item) {
       e.stopPropagation();
       addToCart(item)
       
-    console.log("Add button clicked for:", item);
     })
   }
 

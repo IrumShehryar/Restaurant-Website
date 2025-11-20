@@ -7,9 +7,13 @@ GET http://127.0.0.1:5000/api/v1/menu/1
 ### Get single menu item
 GET http://127.0.0.1:5000/api/v1/menu/5
 ### Get single menu item non-existent
-GET http://127.0.0.1:5000/api/v1/menu/691211b751476ba3fc35b9f5
+GET http://127.0.0.1:5000/api/v1/menu/691ca77e5b0383e82aa16138
 ### Get single menu item malformed input
 GET http://127.0.0.1:5000/api/v1/menu/-
+
+########################################
+#POSTING Single items
+##########################################
 
 ### post an item
 POST http://localhost:5000/api/v1/menu
@@ -25,8 +29,29 @@ Content-Type: application/json
   "allergens": ["milk"],
   "days_of_week": ["Monday","Tuesday","wednesday","Thursday","Friday","saturday","Sunday"],
   "active": true
+  }
+
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Nordic Salmon Skewers",
+"description": "Grilled salmon skewers with lemon-herb glaze and a side of dill mayo.",
+"price": 9.75,
+"category": "main",
+"image": "Nordic Salmon Skewers.jpg",
+"dietary": ["pescatarian"],
+"allergens": ["fish"],
+"ingredients":  ["salmon", "lemon", "herbs", "mayonnaise"],
+"days_of_week": ["Monday"],
+"active": true
 }
 
+###
+
+
+#######################################
 ###update an item
 PUT http://localhost:5000/api/v1/menu/691362e8db9472e4003f4590
 Content-Type: application/json
@@ -45,4 +70,4 @@ Content-Type: application/json
   "image" : "https://via.placeholder.com/480x320?text=Menu+Item"
 }
 ### Delete an item
-DELETE http://localhost:5000/api/v1/menu/691211b751476ba3fc35b9f5
+DELETE http://localhost:5000/api/v1/menu/691b7569f13b2b3f70dee895
