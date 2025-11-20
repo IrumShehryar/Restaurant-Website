@@ -1,16 +1,12 @@
 {% extends "base.html" %} {% block title %}Revontulet Flamehouse — Where Aurora
-Meets Culinary Art{% endblock %} {% block content %}
+Meets Culinary Art{% endblock %} {% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/index.css') }}"
+/>
+{% endblock %} {% block content %}
 
 <section class="hero">
-    <!-- Original hero image (commented out) -->
-    {#
-    <img
-        src="{{ url_for('static', filename='assets/hero-image.jpeg') }}"
-        alt="Burgers and drinks"
-        class="hero-image"
-    />
-    #}
-
     <div class="hero-content">
         <div class="hero-left">
             <p class="hero-tagline">ARCTIC • AURORA • FLAME</p>
@@ -22,7 +18,7 @@ Meets Culinary Art{% endblock %} {% block content %}
 
             <div class="hero-features">
                 <span>🌌 Nordic Cuisine</span>
-                <span>❄️ Fresh Ingredients</span>
+                <span>❄ Fresh Ingredients</span>
                 <span>🔥 Arctic Passion</span>
             </div>
         </div>
@@ -36,5 +32,11 @@ Meets Culinary Art{% endblock %} {% block content %}
     </div>
     <div class="hero-fade" aria-hidden="true"></div>
 </section>
-
+<!-- Highlight of the Day -->
+<section
+    id="highlight-root"
+    class="page-highlight"
+    aria-live="polite"
+    aria-label="Highlight of the day"
+></section>
 {% endblock %}
