@@ -222,6 +222,23 @@
   margin: 0 auto;
 }
 
+/* Option A: Larger main highlight (span two columns) */
+.highlight-grid.option-a { grid-template-columns: 1.8fr 1fr 1fr; }
+.highlight-item.highlight-main {
+  grid-column: span 2;
+}
+.highlight-item.highlight-main .highlight-card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.highlight-item.highlight-main .highlight-thumb,
+.highlight-item.highlight-main .menu-card__image {
+  height: 12rem;
+  object-fit: cover;
+}
+
 .highlight-item {
   background: linear-gradient(180deg, rgba(99,102,241,0.04), rgba(99,102,241,0.01));
   border: 0.0625rem solid rgba(99,102,241,0.10);
