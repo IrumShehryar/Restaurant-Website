@@ -33,10 +33,13 @@ Meets Culinary Art{% endblock %} {% block styles %}
     <div class="hero-fade" aria-hidden="true"></div>
 </section>
 <!-- Highlight of the Day -->
-<section
-    id="highlight-root"
-    class="page-highlight"
-    aria-live="polite"
-    aria-label="Highlight of the day"
-></section>
+<div class="highlight-wrapper">
+    <h3 class="highlight-heading">Today's Highlights</h3>
+    <section
+        id="highlight-root"
+        class="page-highlight"
+        aria-live="polite"
+        aria-label="Highlight of the day"
+    ></section>
+</div>
 {% endblock %}

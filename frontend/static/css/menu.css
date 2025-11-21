@@ -60,24 +60,49 @@
   margin-bottom: 0.5rem;
 }
 
-/* Highlight of the Day styling */
+/* Highlight of the Day styling - full-image card layout */
 .highlight-card {
-  display: flex;
-  gap: 1rem;
-  align-items: stretch;
-  padding: 1rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  position: relative;
+  overflow: hidden;
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.05);
   margin-bottom: 1.25rem;
+  min-height: 12rem;
 }
 
-/* If createMenuCard output has an img inside the card */
+/* If createMenuCard output has an img inside the card - make it cover the card */
 .highlight-card img {
-  width: 12rem;
-  height: auto;
+  /* Keep highlight-card images in normal flow with a fixed visual height
+     (removed absolute positioning to ensure the container height is consistent
+     across all highlight items). */
+  position: relative;
+  width: 100%;
+  height: 9rem;
   object-fit: cover;
-  border-radius: 0.4rem;
+  display: block;
+  z-index: 0;
+}
+
+/* Ensure any image variant used inside highlight items (thumb, menu-card img) behaves the same
+   so all three highlight cards have a full-image appearance */
+.highlight-item {
+  position: relative;
+  overflow: hidden;
+}
+.highlight-item img,
+.highlight-item .highlight-thumb,
+.highlight-item .menu-card__image,
+.highlight-item .menu-card img {
+  /* Use normal document flow for highlight images so the parent .highlight-item
+     height is determined consistently. Keep object-fit to preserve cover behavior. */
+  position: relative;
+  width: 100%;
+  height: 9rem;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  z-index: 0;
+  border-radius: inherit;
 }
 
 /* Make title stand out if using .menu-card__title */
@@ -222,21 +247,76 @@
   margin: 0 auto;
 }
 
-/* Option A: Larger main highlight (span two columns) */
-.highlight-grid.option-a { grid-template-columns: 1.8fr 1fr 1fr; }
-.highlight-item.highlight-main {
-  grid-column: span 2;
-}
-.highlight-item.highlight-main .highlight-card-inner {
-  height: 100%;
+/* Ensure all highlight items are the same visual height and layout
+   - stretch grid items to equal heights
+   - make the card inner fill available space so cards align
+   - hide any leftover `::before` ribbon (e.g. "Today") if present */
+.highlight-grid { align-items: stretch; }
+.highlight-item { display: flex; flex-direction: column; align-items: stretch; min-height: 12rem; }
+.highlight-item .highlight-card-inner { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-between; }
+/* force thumb/image height consistency */
+.highlight-thumb,
+.placeholder-thumb,
+.highlight-item .menu-card__image { height: 9rem; }
+/* If a ::before ribbon exists, hide it so it won't appear on the image */
+.highlight-item::before,
+.highlight-item.highlight-main::before { display: none !important; content: none !important; }
+
+/* Highlight animation: subtle float + soft glow for all highlight cards
+   Applies a gentle staggered animation to each of the three highlight items (starter/main/dessert)
+   Respects prefers-reduced-motion to disable animations. */
+.highlight-item .highlight-card-inner {
+  position: relative;
+  z-index: 2; /* sit above the background image */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
+  padding: 1rem;
+  color: #fff;
+  background: transparent; /* make inner wrapper transparent so images show through consistently */
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
-.highlight-item.highlight-main .highlight-thumb,
-.highlight-item.highlight-main .menu-card__image {
-  height: 12rem;
-  object-fit: cover;
+
+/* subtle bottom gradient overlay for readability of actions/titles
+   implemented with a pseudo element so it appears the same for all highlight cards */
+.highlight-item .highlight-card-inner::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.46) 100%);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+}
+.highlight-item .highlight-card-inner > * { position: relative; z-index: 2; }
+
+/* subtle float + soft glow animation */
+.highlight-item .highlight-card-inner {
+  animation: highlight-float 5.6s ease-in-out infinite;
+}
+
+/* stagger the three highlight items so the motion feels organic */
+.highlight-grid .highlight-item:nth-child(1) .highlight-card-inner { animation-delay: 0.9s; }
+.highlight-grid .highlight-item:nth-child(2) .highlight-card-inner { animation-delay: 0.6s; }
+.highlight-grid .highlight-item:nth-child(3) .highlight-card-inner { animation-delay: 0.9s; }
+
+/* slightly stronger accent for the main highlight */
+.highlight-item.highlight-main .highlight-card-inner {
+  border: 0.12rem solid rgba(var(--modal-accent-rgb), 0.20);
+}
+
+@keyframes highlight-float {
+  0% { transform: translateY(0); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+  50% { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(var(--modal-accent-rgb), 0.08); }
+  100% { transform: translateY(0); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight-item .highlight-card-inner { animation: none !important; transform: none !important; }
 }
 
 .highlight-item {
@@ -283,6 +363,20 @@
   object-fit: cover;
   border-radius: 0.4rem;
   display: block;
+}
+
+/* Ensure highlight action buttons align consistently at the bottom of the overlay */
+.highlight-card-inner .menu-actions,
+.highlight-item .menu-actions {
+  display: flex !important;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: auto; /* push actions to the bottom of the card content */
+}
+
+/* Ensure container and inner overlay share same rounded corners */
+.highlight-card, .highlight-item .highlight-card-inner {
+  border-radius: 0.5rem;
 }
 
 
@@ -351,4 +445,39 @@
     width: 100%;
     height: auto;
   }
+}
+
+/* Full-bleed hero banner for main highlight */
+.highlight-item.highlight-fullbleed {
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  padding: 2rem 1rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.highlight-item.highlight-fullbleed::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.25));
+  pointer-events: none;
+  z-index: 1;
+}
+.highlight-item.highlight-fullbleed .highlight-card-inner,
+.highlight-item.highlight-fullbleed .menu-card {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.highlight-item.highlight-fullbleed img,
+.highlight-item.highlight-fullbleed .highlight-thumb {
+  display: none;
+}
+@media (max-width: 48rem) {
+  .highlight-item.highlight-fullbleed { padding: 1rem; }
 }
