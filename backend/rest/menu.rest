@@ -49,17 +49,63 @@ Content-Type: application/json
 }
 
 ###
-
-
-#######################################
-###update an item
-PUT http://localhost:5000/api/v1/menu/691362e8db9472e4003f4590
+POST http://localhost:5000/api/v1/menu
 Content-Type: application/json
 
 {
-  "name": "wings",
-  "price": 10.99, 
-  "allergens": ["nuts"]
+"name": "Aurora Bites",
+"description": "Crispy potato bites tossed in northern spice, served with cool dill sauce.",
+"price": 5.50,
+"category": "starter",
+"image": "Aurora-Bites.jpg",
+"dietary": ["vegetarian"],
+"allergens": ["milk"],
+"ingredients": ["potato","flour","egg","spices","dill","butter"],
+"days_of_week": ["Monday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Lingonberry Cheesecake",
+"description": "Creamy cheesecake topped with tart lingonberry compote.",
+"price": 4.50,
+"category": "dessert",
+"image": "Lingonberry-Cheesecake.jpg",
+"dietary": ["vegetarian"],
+"allergens": ["milk","egg","gluten"],
+"ingredients": ["cream cheese","sugar","egg","butter","digestive biscuits","lingonberries"],
+"days_of_week": ["Monday"],
+"active": true
+}
+
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Smoked Trout Salad",
+"description": "Smoked trout with crisp greens, pickled cucumber and lemon vinaigrette.",
+"price": 6.75,
+"category": "starter",
+"image": "Smoked Trout Salad.jpg",
+"dietary": ["pescatarian"],
+"allergens": ["fish"],
+"ingredients": ["smoked trout","lettuce","cucumber","lemon","olive oil","capers"],
+"days_of_week": ["Tuesday"],
+"active": true
+}
+#######################################
+
+
+###update an item
+PUT http://localhost:5000/api/v1/menu/6920aee1f761a0627fc146a9
+Content-Type: application/json
+
+{
+  "image" : "Lingonberry-Cheesecake.jpg"
 
 }
 ###
