@@ -108,7 +108,7 @@ async function loadMenu() {
         const mainImg = slotMain.querySelector('img');
         if (mainImg && mainImg.src) {
           // apply full-bleed class to the slot and use the image as background
-          slotMain.classList.add('highlight-fullbleed');
+          //slotMain.classList.add('highlight-fullbleed');
           slotMain.style.backgroundImage = `url('${mainImg.src}')`;
           slotMain.style.backgroundRepeat = 'no-repeat';
           slotMain.style.backgroundSize = 'cover';

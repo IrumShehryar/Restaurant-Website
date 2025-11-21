@@ -97,6 +97,185 @@ Content-Type: application/json
 "days_of_week": ["Tuesday"],
 "active": true
 }
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Midnight Burger",
+"description": "Juicy beef burger with smoked cheese, arctic sauce and crispy onions.",
+"price": 8.95,
+"category": "main",
+"image": "Midnight Burger.jpg",
+"dietary": [],
+"allergens": ["gluten","egg","milk"],
+"ingredients": ["beef","bun","cheese","onion","lettuce","pickles","sauce"],
+"days_of_week": ["Tuesday"],
+"active": true
+}
+
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Midnight Berry Parfait",
+"description": "Layered yogurt, mixed berries and crunchy granola with a honey drizzle.",
+"price": 4.25,
+"category": "dessert",
+"image": "Midnight Berry Parfait.jpg",
+"dietary": ["vegetarian"],
+"allergens": ["milk","gluten"],
+"ingredients": ["yogurt","strawberries","blueberries","granola","honey"],
+"days_of_week": ["Tuesday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Fjord Falafel Wrap",
+"description": "Crispy falafel with fresh greens, tomato and tahini in a soft wrap.",
+"price": 6.25,
+"category": "starter",
+"image": "Fjord Falafel Wrap.jpg",
+"dietary": ["vegetarian","vegan"],
+"allergens": ["sesame","gluten"],
+"ingredients": ["chickpeas","herbs","garlic","tahini","wrap","lettuce","tomato"],
+"days_of_week": ["Wednesday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Firewood Salmon",
+"description": "Charred firewood-grilled salmon with herb butter and roasted root vegetables.",
+"price": 11.50,
+"category": "main",
+"image": "Firewood Salmon.jpg",
+"dietary": ["pescatarian"],
+"allergens": ["fish"],
+"ingredients": ["salmon","butter","rosemary","garlic","potatoes","carrots"],
+"days_of_week": ["Wednesday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Glazed Lingon Pancakes",
+"description": "Warm pancakes glazed with lingonberry syrup and whipped cream.",
+"price": 4.75,
+"category": "dessert",
+"image": "Glazed Lingon Pancakes.jpg",
+"dietary": ["vegetarian"],
+"allergens": ["milk","egg","gluten"],
+"ingredients": ["flour","egg","milk","sugar","butter","lingonberry syrup","cream"],
+"days_of_week": ["Wednesday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Crispy Fries",
+"description": "Hand-cut crispy fries with sea salt and herb seasoning.",
+"price": 3.00,
+"category": "side",
+"image": "Crispy Fries.jpg",
+"dietary": ["vegan"],
+"allergens": [],
+"ingredients": ["potato","salt","oil","herbs"],
+"days_of_week": ["Thursday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Reindeer Stew",
+"description": "Slow-cooked reindeer with root vegetables and rich gravy.",
+"price": 10.50,
+"category": "main",
+"image": "Reindeer Stew.jpg",
+"dietary": ["gluten-free"],
+"allergens": [],
+"ingredients": ["reindeer meat","potato","carrot","onion","beef stock","butter","bay leaf"],
+"days_of_week": ["Thursday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Arctic Garden Bowl",
+"description": "Fresh bowl of quinoa, roasted beet, kale, seeds and lemon vinaigrette.",
+"price": 6.00,
+"category": "starter",
+"image": "Artic Garden Bowl.jpg",
+"dietary": ["vegetarian","vegan"],
+"allergens": ["seeds"],
+"ingredients": ["quinoa","kale","beet","carrot","sunflower seeds","lemon","olive oil"],
+"days_of_week": ["Friday"],
+"active": true
+}
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Chef's Northern Special",
+"description": "Hearty plate with roasted game, seasonal root veg and creamy mushroom jus.",
+"price": 12.50,
+"category": "main",
+"image": "Chef's Northen Special.jpg",
+"dietary": ["gluten-free"],
+"allergens": ["milk"],
+"ingredients": ["game meat","potato","carrot","mushroom","cream","juniper","butter"],
+"days_of_week": ["Friday"],
+"active": true
+}
+
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Cloudberry Spritz",
+"description": "Light sparkling cocktail with tart cloudberry and a citrus finish.",
+"price": 5.50,
+"category": "drink",
+"image": "Cloudberry Spritz.jpg",
+"dietary": ["non alcoholic"],
+"allergens": [],
+"ingredients": ["cloudberry syrup","sparkling water","lemon","ice"],
+"days_of_week": ["Saturday"],
+"active": true
+}
+
+###
+POST http://localhost:5000/api/v1/menu
+Content-Type: application/json
+
+{
+"name": "Birch Latte",
+"description": "Warm birch-infused latte with steamed milk and a touch of honey.",
+"price": 3.75,
+"category": "drink",
+"image": "Birch Latte.jpg",
+"dietary": ["vegetarian"],
+"allergens": ["milk"],
+"ingredients": ["espresso","steamed milk","birch syrup","honey"],
+"days_of_week": ["Sunday"],
+"active": true
+}
 #######################################
 
 
