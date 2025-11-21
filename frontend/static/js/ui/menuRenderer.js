@@ -8,24 +8,16 @@
  * @param {Object} item - Menu item object from the API.
  * @returns {string} HTML string representing the item details.
  */
+import { resolveImageUrl } from "../utils/image-resolver.js";
+
 export function renderItemDetail(item) {
 	// Return minimal, well-formed HTML for the modal content.
-	// Keep it simple — styling can be added later.
-	// allergens and dietary may be arrays or single values; normalise to arrays
 	const allergensArr = Array.isArray(item.allergens) ? item.allergens : (item.allergens ? [item.allergens] : []);
 	// dietary may be array or single string; render as badges below
 	const dietaryArr = Array.isArray(item.dietary) ? item.dietary : (item.dietary ? [item.dietary] : []);
-	// resolve image source: keep absolute/full URLs, otherwise prefix the assets folder
-	// encode filenames so spaces, apostrophes, etc. won't break the URL
-	const imgSrc = item.image
-		? (item.image.startsWith('/') || item.image.startsWith('http')
-			? item.image
-			: `/static/assets/${encodeURIComponent(item.image)}`)
-		: null;
-	// add a local fallback (hero-image.jpeg) when external image fails to load
-	const img = imgSrc
-		? `<img src="${imgSrc}" alt="${item.name}" onerror="this.onerror=null;this.src='/static/assets/hero-image.jpeg'" />`
-		: ''
+	
+	const imgSrc = resolveImageUrl(item);
+	const img =`<img src="${imgSrc}" alt="${item.name}" onerror="this.onerror=null;this.src='/static/assets/fallback-image.jpeg'" />`
 
 	// Ingredients: support either an array of strings or array of objects {name, description}
 	let ingredientsHTML = '';
