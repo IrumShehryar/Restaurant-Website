@@ -14,6 +14,8 @@
  * @returns {HTMLElement} A DOM node representing the card.
  */
 import {addToCart} from "../cart.js"
+import { resolveImageUrl } from "../utils/image-resolver.js";   
+
 export function createMenuCard(item) {
   // Create the root container for the card: <div class="menu-card">
   const el = document.createElement('div');
@@ -25,17 +27,11 @@ export function createMenuCard(item) {
   el.dataset.id = item.id;
 
   // resolve image source similar to menuRenderer: prefer image_url, then image filename, then fallback
-  const imgSrc = item.image_url
-    ? item.image_url
-    : (item.image
-      ? (item.image.startsWith('/') || item.image.startsWith('http')
-        ? item.image
-        : `/static/assets/${encodeURIComponent(item.image)}`)
-      : '/static/assets/hero-image.jpeg');
+  const imgSrc = resolveImageUrl(item);
+  el.dataset.img = imgSrc; // store resolved image URL for potential reuse
 
   // Insert the card's inner structure.
-  // NOTE: innerHTML is convenient, but if item fields may contain untrusted content,
-  // prefer creating nodes and setting textContent to avoid injection.
+ 
   el.innerHTML = `
     <img
       class="menu-card__image"
@@ -68,33 +64,20 @@ export function createMenuCard(item) {
   // Find the Details button inside this card.
   const btn = el.querySelector('.btn-detail');
 
-  // Guard in case markup changes and the selector fails.
+  
   if (btn) {
     // Attach a click handler only to this card's Details button.
     btn.addEventListener('click', () => {
-      // Emit a CustomEvent from the card element itself.
-      // Name: "show-detail" — the controller can listen for this on a parent container.
       // bubbles: true allows the event to travel up the DOM (event bubbling),
       // so a single parent listener can handle all cards (event delegation).
-      // detail carries the payload the controller needs (the item id).
       el.dispatchEvent(new CustomEvent('show-detail', {
           bubbles: true,
           detail: { id: item.id || item._id },
-        }));
-      // Fallback: also dispatch on document in case the event doesn't bubble to the controller
-      try {
-        document.dispatchEvent(new CustomEvent('show-detail', {
-          detail: { id: item.id || item._id },
-        }));
-      } catch (err) {
-        // ignore in environments where document may be unavailable
-      }
+        }));   
     });
   }
 
-  // FIX: Added missing closing brace for btnAdd addEventListener block
-  // ISSUE: Previous code had syntax error where closing brace was on same line as function,
-  // preventing the return statement from executing. Now properly structured.
+  
   const btnAdd = el.querySelector('.btn-add');
   // Guard in case markup changes and the selector fails.
   if (btnAdd) {
