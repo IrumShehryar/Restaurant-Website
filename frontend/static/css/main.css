@@ -195,7 +195,7 @@ nav{
 .nav-links a.active{ color: #00ff88; font-weight: bold;}
 .logo{ flex-shrink: 0; }
    
-.logo img{ height: 8rem; display: block; }
+.logo img{ height: 5.5rem; display: block; }
 
 /* Language Switcher Styles */
 
