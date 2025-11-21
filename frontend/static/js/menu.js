@@ -103,6 +103,24 @@ async function loadMenu() {
       grid.appendChild(slotDessert);
       grid.appendChild(slotOther);
 
+      // If we want a full-bleed hero banner, set background on the main slot
+      try {
+        const mainImg = slotMain.querySelector('img');
+        if (mainImg && mainImg.src) {
+          // apply full-bleed class to the slot and use the image as background
+          slotMain.classList.add('highlight-fullbleed');
+          slotMain.style.backgroundImage = `url('${mainImg.src}')`;
+          slotMain.style.backgroundRepeat = 'no-repeat';
+          slotMain.style.backgroundSize = 'cover';
+          slotMain.style.backgroundPosition = 'center';
+          // hide the inline image so the background shows through
+          mainImg.style.display = 'none';
+        }
+      } catch (e) {
+        // silently ignore if DOM structure is unexpected
+        console.warn('hero setup failed', e);
+      }
+
       // clear previous highlight contents and append grid
       highlightRoot.innerHTML = '';
       highlightRoot.appendChild(grid);

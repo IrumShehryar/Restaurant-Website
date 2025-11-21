@@ -37,10 +37,28 @@
   text-decoration: none;
   display: inline-block;
 }
+
+/* Ensure checkout button text is black in the cart layout (more specific than .cart-summary .btn) */
+.cart-summary .btn.btn-checkout {
+  color: #0b0b0b;
+}
 .btn-checkout {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
   cursor: pointer;
   font-size: 1rem;
   margin-right: 1rem;
+  background: var(--modal-accent);
+  color: #0b0b0b;
+  border: 1px solid rgba(var(--modal-accent-rgb), 0.16);
+  box-shadow: 0 0.35rem 0.6rem rgba(0,0,0,0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+.btn-checkout:hover {
+  background: rgba(var(--modal-accent-rgb), 0.85);
+  transform: translateY(-2px);
 }
 .btn-continue {
   color: #00ff88;
