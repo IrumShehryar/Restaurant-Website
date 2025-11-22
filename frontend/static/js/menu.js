@@ -6,7 +6,8 @@
 
 import { getAllMenu, getMenuById } from "./services/menuService.js";
 import { createMenuCard } from "./components/menuCard.js";
-import { renderItemDetail } from './ui/menuRenderer.js';
+import { renderItemDetail } from './ui/modalRenderer.js';
+import { renderMenuPage } from './ui/menuRenderer.js';
 import { createModal } from './components/modal.js';
 import { initCartUI } from "./cart.js";
 /**
@@ -45,93 +46,23 @@ async function loadMenu() {
     // choose highlight: today's first, or featured, or first item
     const highlight = today[0] || items.find(i => i.featured) || items[0];
 
+    // Let the renderer build both highlights and the categorized menu fragment
+    const { highlightsNode, menuFragment } = renderMenuPage(items, {
+      highlightOptions: { preferCategoryOrder: ['Main','Dessert','Starter'] },
+      menuOptions: { order: ['Starter','Main','Dessert','Side','Drink'], uppercase: false }
+    });
+
     const highlightRoot = document.getElementById('highlight-root');
     if (highlightRoot) {
-      // Build a 3-column highlight grid: main highlight + two supporting slots
-      const grid = document.createElement('div');
-      grid.className = 'highlight-grid';
-
-      // helper to create a highlight slot element
-      const makeSlot = (it) => {
-        const slot = document.createElement('div');
-        slot.className = 'highlight-item';
-        if (it) {
-          // reuse the existing menu card to preserve buttons/events
-          const card = createMenuCard(it);
-          // small visual tweak marker for highlight cards
-          card.classList.add('highlight-card-inner');
-          slot.appendChild(card);
-        } else {
-          // placeholder slot
-          slot.innerHTML = `
-            <div class="placeholder-thumb"></div>
-            <div class="highlight-body">
-              <span class="highlight-title">Coming Soon</span>
-            </div>
-          `;
-        }
-        return slot;
-      };
-
-      // pick two supporting items: prefer dessert and drink categories, otherwise use other items
-      const pickByCategory = (catNames, excludeIds=[]) => {
-        return items.find(i => i && i.category && !excludeIds.includes(i.id) && catNames.some(c => i.category.toLowerCase().includes(c)));
-      };
-
-      const exclude = new Set();
-      if (highlight) exclude.add(highlight.id || highlight._id);
-
-      const dessert = pickByCategory(['dessert'], Array.from(exclude));
-      if (dessert) exclude.add(dessert.id || dessert._id);
-
-      const drink = pickByCategory(['drink','beverage','cocktail','drinkable'], Array.from(exclude));
-      if (drink) exclude.add(drink.id || drink._id);
-
-      // fallback: find any items not already used
-      const pickFallback = (excludeIds=[]) => items.find(i => i && !excludeIds.includes(i.id) && !excludeIds.includes(i._id));
-
-      const slotMain = makeSlot(highlight || items[0]);
-      slotMain.classList.add('highlight-main');
-      const slotDessert = makeSlot(dessert || pickFallback(Array.from(exclude)));
-      // ensure unique second fallback
-      const usedIds = new Set();
-      [slotMain, slotDessert].forEach(s => { const c = s.querySelector('[data-id]'); if (c) usedIds.add(c.dataset.id); });
-      const otherCandidate = items.find(i => i && !usedIds.has(String(i.id)) && !usedIds.has(String(i._id)));
-      const slotOther = makeSlot(otherCandidate);
-
-      grid.appendChild(slotMain);
-      grid.appendChild(slotDessert);
-      grid.appendChild(slotOther);
-
-      // If we want a full-bleed hero banner, set background on the main slot
-      // Read the resolved image URL from the card already appended into the slot
-      const mainCard = slotMain.querySelector('[data-img]');
-      const resolved = mainCard ? mainCard.dataset.img : null;
-      if (resolved) {
-        slotMain.style.backgroundImage = `url('${resolved}')`;
-        slotMain.style.backgroundRepeat = 'no-repeat';
-        slotMain.style.backgroundSize = 'cover';
-        slotMain.style.backgroundPosition = 'center';
-        const imgEl = mainCard.querySelector('img');
-        if (imgEl) imgEl.style.display = 'none';
-      }
-
-      // clear previous highlight contents and append grid
       highlightRoot.innerHTML = '';
-      highlightRoot.appendChild(grid);
+      highlightRoot.appendChild(highlightsNode);
     }
 
-    el.innerHTML = "";
-
-    if (Array.isArray(items) && items.length) {
-      const frag = document.createDocumentFragment();
-      items.forEach((i) => {
-        const card = createMenuCard(i);
-        frag.appendChild(card);
-      });
-      el.appendChild(frag);
+    el.innerHTML = '';
+    if (menuFragment) {
+      el.appendChild(menuFragment);
     } else {
-      el.textContent = "No items in the menu";
+      el.textContent = 'No items in the menu';
     }
   } catch (err) {
     el.textContent = "Failed to load the menu";

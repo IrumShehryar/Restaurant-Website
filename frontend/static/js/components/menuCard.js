@@ -43,7 +43,7 @@ export function createMenuCard(item) {
       <b class="menu-card__title">${item.name}</b>
 
       <!-- Meta line: category • price -->
-      <div class="menu-card__meta">${item.category} • ${item.price}€</div>
+      <div class="menu-card__meta">${item.price}€</div>
     </div>
 
     <div class="menu-actions">
