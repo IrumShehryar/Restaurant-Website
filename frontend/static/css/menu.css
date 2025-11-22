@@ -55,10 +55,13 @@
 /* Ensure images inside menu cards don't force overflow */
 .menu-card img {
   width: 100%;
-  height: 10rem;
+  /* exact visual size requested; keep consistent card layout but do not crop */
+  height: 9rem; /* exact height for card thumbnails */
   display: block;
   border-radius: 0.4rem;
   margin-bottom: 0.5rem;
+  object-fit: contain; /* show full image without cropping */
+  background-color: rgba(0,0,0,0.06); /* subtle letterbox background */
 }
 
 .menu-card:hover {
@@ -110,11 +113,11 @@
 .highlight-card img {
   /* Keep highlight-card images in normal flow with a fixed visual height
      (removed absolute positioning to ensure the container height is consistent
-     across all highlight items). */
+     across all highlight items). Use contain so the image is fully visible. */
   position: relative;
   width: 100%;
   height: 9rem;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   z-index: 0;
 }
@@ -191,6 +194,13 @@
 }
 .menu-detail__body {
   line-height: 1.6; /* add spacing between lines for readability */
+}
+
+
+
+/* Ensure actions have a little space from the content above */
+.menu-actions {
+  margin-top: 0.4rem;
 }
 
 .menu-card h3,
@@ -356,13 +366,8 @@
 }
 
 .highlight-item {
-  background: linear-gradient(180deg, rgba(99,102,241,0.04), rgba(99,102,241,0.01));
-  border: 0.0625rem solid rgba(99,102,241,0.10);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
+  position: relative;
+  overflow: hidden;
 }
 
 .highlight-thumb {
@@ -471,6 +476,11 @@
   margin-bottom: 0.5rem;
 }
 
+/* Add a small gap above the action buttons specifically for menu cards */
+.menu-card .menu-actions {
+  margin-top: 0.5rem;
+}
+
 /* Responsive: stack highlight card on narrow screens */
 @media (max-width: 40rem) {
   .highlight-card {
@@ -516,4 +526,49 @@
 }
 @media (max-width: 48rem) {
   .highlight-item.highlight-fullbleed { padding: 1rem; }
+}
+
+/* --- Horizontal category rows + visible section divider --- */
+.menu-category {
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* When the main container is a grid (e.g. #menuList.menu-grid), ensure each
+   .menu-category occupies the full row so categories stack vertically. This
+   prevents the grid from laying out categories as columns. */
+.menu-grid > .menu-category {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.menu-category__heading {
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem 0;
+  padding: 0.15rem 0;
+  color: #e9d5ff;
+  font-weight: 700;
+}
+
+.menu-row {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+
+.menu-row::-webkit-scrollbar { height: 8px; }
+.menu-row::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.04); border-radius: 4px; }
+
+.menu-row__card {
+  min-width: 16rem;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 60rem) {
+  .menu-row { flex-wrap: nowrap; }
 }
