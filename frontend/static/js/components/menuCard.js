@@ -47,9 +47,7 @@ export function createMenuCard(item) {
     </div>
 
     <div class="menu-actions">
-      <!-- "Details" button. Visible label is "Details".
-           aria-label gives a more specific accessible name for screen readers,
-           e.g., "Show details for Margherita Pizza". -->
+     
       <button
         class="btn btn-secondary btn-detail"
         aria-label="Show details for ${item.name}">
